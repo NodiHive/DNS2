@@ -41,6 +41,11 @@
   nav.is-scrolled .nav-row-top{ max-height:0; opacity:0; padding-top:0; }
   .wordmark{ font-family:'Fraunces', serif; font-weight:500; font-size:22px; color:var(--ink); letter-spacing:0.01em; white-space:nowrap; text-decoration:none; }
   .wordmark-mobile{ display:none; }
+  .home-link{ display:flex; align-items:center; justify-content:center; width:22px; height:22px; color:var(--ink-muted); flex-shrink:0; text-decoration:none; }
+  .home-link svg{ width:18px; height:18px; }
+  .home-link:hover{ color:var(--gold-soft); }
+  .wordmark-group{ display:flex; align-items:center; gap:10px; }
+  .home-link-mobile{ display:none; }
 
   /* Row B: nav links + Register. Fixed height, fixed position, no scroll-state rules exist for it — that's what guarantees it never moves. */
   .nav-row-main{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:16px 0; flex-wrap:nowrap; }
@@ -130,6 +135,7 @@
     .nav-row-top{ display:none; }
     .nav-row-main{ gap:8px; }
     .wordmark-mobile{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12.5px; letter-spacing:0; }
+    .home-link-mobile{ display:flex; }
     .nav-cta{ flex-shrink:0; padding:8px 11px; font-size:10px; }
     .nav-toggle{ flex-shrink:0; width:34px; height:32px; }
     .nav-toggle span{ width:15px; }
@@ -283,14 +289,30 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-row-top">
-      <a class="wordmark" href="index.html">DAVOS <span>NEURODIVERSITY</span> SUMMIT</a>
+      <div class="wordmark-group">
+        <a class="home-link" href="index.html" aria-label="Home" title="Home">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9.5L10 3.5L17 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 8V16.5H15V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+        <a class="wordmark" href="index.html">DAVOS <span>NEURODIVERSITY</span> SUMMIT</a>
+      </div>
       <div class="cta-detail">
         <p class="cta-eyebrow">Join us at DNS 2027</p>
         <p class="cta-sub">Virtually, or in the Alps</p>
       </div>
     </div>
     <div class="nav-row-main">
-      <a class="wordmark wordmark-mobile" href="index.html">DAVOS <span>NEURODIVERSITY</span> SUMMIT</a>
+      <div class="wordmark-group">
+        <a class="home-link home-link-mobile" href="index.html" aria-label="Home" title="Home">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9.5L10 3.5L17 9.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 8V16.5H15V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+        <a class="wordmark wordmark-mobile" href="index.html">DAVOS <span>NEURODIVERSITY</span> SUMMIT</a>
+      </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="agenda.html">Agenda</a>
