@@ -37,15 +37,24 @@
   .nav-inner{ max-width:1080px; margin:0 auto; padding:0 28px; }
 
   /* Row A: wordmark + descriptive copy. Only part that ever changes on scroll. */
-  .nav-row-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:24px; max-height:70px; opacity:1; padding-top:22px; overflow:hidden; transition:max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease; }
+  .nav-row-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:24px; max-height:110px; opacity:1; padding-top:22px; overflow:hidden; transition:max-height 0.6s ease, opacity 0.4s ease, padding 0.6s ease; }
   nav.is-scrolled .nav-row-top{ max-height:0; opacity:0; padding-top:0; }
+  .nav-row-top .wordmark-group{ transition:transform 0.65s cubic-bezier(0.4,0,0.2,1), opacity 0.45s ease; }
+  nav.is-scrolled .nav-row-top .wordmark-group{ transform:translateX(-160%); opacity:0; }
+  html{ overflow-anchor:none; }
   .wordmark{ font-family:'Fraunces', serif; font-weight:500; font-size:22px; color:var(--ink); letter-spacing:0.01em; white-space:nowrap; text-decoration:none; }
+  .nav-row-top .wordmark{ font-size:25px; }
   .wordmark-mobile{ display:none; }
   .home-link{ display:flex; align-items:center; justify-content:center; width:22px; height:22px; color:var(--ink-muted); flex-shrink:0; text-decoration:none; }
   .home-link svg{ width:18px; height:18px; }
   .home-link:hover{ color:var(--gold-soft); }
+  .nav-row-top .home-link{ width:25px; height:25px; }
+  .nav-row-top .home-link svg{ width:20px; height:20px; }
+  .home-link-mobile{ width:20px; height:20px; }
+  .home-link-mobile svg{ width:16px; height:16px; }
+  .nav-row-main .wordmark-group{ display:none; }
+  nav.is-scrolled .nav-row-main .wordmark-group{ display:flex; }
   .wordmark-group{ display:flex; align-items:center; gap:10px; }
-  .home-link-mobile{ display:none; }
 
   /* NAV DROPDOWNS (Honors, Media) */
   .nav-drop{ position:relative; }
@@ -106,13 +115,44 @@
   .cm-children a{ display:block; text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-muted); padding:6px 0; }
   .cm-children a:hover{ color:var(--gold-soft); }
   .cta-detail{ text-align:right; }
-  .cta-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); margin:0; }
-  .cta-sub{ font-size:11.5px; color:var(--ink-muted); margin:3px 0 0; }
+  .cta-eyebrow-wrap{ position:relative; display:inline-block; }
+  .cta-sparkle{ position:absolute; opacity:0; transform:scale(0) rotate(0deg); pointer-events:none;
+    animation:cta-sparkle-pop 0.9s ease-out 1; filter:drop-shadow(0 0 3px rgba(255,255,255,0.8)); }
+  @keyframes cta-sparkle-pop{
+    0%{ opacity:0; transform:scale(0) rotate(0deg); }
+    40%{ opacity:1; transform:scale(1) rotate(70deg); }
+    100%{ opacity:0; transform:scale(0) rotate(140deg); }
+  }
+  .cta-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:20px; font-weight:500; letter-spacing:0.07em; text-transform:uppercase; margin:0;
+    color:var(--gold-soft);
+    background:linear-gradient(100deg, var(--gold-soft) 0%, var(--gold-soft) 18%, #ffffff 50%, var(--gold-soft) 82%, var(--gold-soft) 100%);
+    background-size:250% 100%;
+    background-position:-150% 0;
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent;
+    display:inline-block;
+    animation:cta-shine 2.6s ease-in-out 0.6s 1 forwards, cta-glow 2.6s ease-in-out 0.6s 1 forwards;
+  }
+  @keyframes cta-shine{
+    0%{ background-position:-150% 0; transform:scale(1); }
+    50%{ transform:scale(1.05); }
+    100%{ background-position:150% 0; transform:scale(1); }
+  }
+  @keyframes cta-glow{
+    0%,100%{ filter:drop-shadow(0 0 0 rgba(255,255,255,0)); }
+    50%{ filter:drop-shadow(0 0 14px rgba(255,255,255,0.95)) drop-shadow(0 0 26px rgba(201,164,92,0.7)); }
+  }
+  .cta-sub{ font-size:14px; color:var(--ink-muted); margin:5px 0 0; }
 
   /* Row B: nav links + Register. Fixed height, fixed position, no scroll-state rules — that's what guarantees it never moves. */
   .nav-row-main{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:16px 0; flex-wrap:nowrap; }
+  .nav-row-main{ justify-content:flex-start; }
   .nav-row-main-right{ display:flex; align-items:center; gap:14px; flex-shrink:0; }
+  .nav-row-main-right{ margin-left:auto; }
   .nav-links{ display:flex; gap:26px; flex-wrap:wrap; align-items:center; }
+  .nav-links{ margin-left:35px; }
+  nav.is-scrolled .nav-links{ margin-left:0; }
   .nav-cta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--bg); background:var(--gold-soft); padding:9px 16px; text-decoration:none; border-radius:2px; white-space:nowrap; flex-shrink:0; }
   .nav-cta:hover{ background:var(--gold); }
   .wordmark span{ color:var(--gold-soft); }
@@ -136,11 +176,12 @@
   .nav-toggle.is-active span:nth-child(2){ opacity:0; }
   .nav-toggle.is-active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
   @media (max-width:760px){
+    .nav-row-main .wordmark-group{ display:flex !important; }
+    .nav-links{ margin-left:0 !important; }
     .nav-toggle{ display:flex; }
     .nav-row-top{ display:none; }
     .nav-row-main{ gap:8px; }
     .wordmark-mobile{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12.5px; letter-spacing:0; }
-    .home-link-mobile{ display:flex; }
     .nav-cta{ flex-shrink:0; padding:8px 11px; font-size:10px; }
     .nav-toggle{ flex-shrink:0; width:34px; height:32px; }
     .nav-toggle span{ width:15px; }
@@ -328,6 +369,14 @@
     .register-frame-wrap iframe{ height:900px; }
   }
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  @media (prefers-reduced-motion: reduce){ *{ transition-duration:0.01ms !important; animation-duration:0.01ms !important; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .cta-eyebrow{ animation:none !important; background:none !important; -webkit-text-fill-color:var(--gold-soft) !important; color:var(--gold-soft) !important; transform:none !important; filter:none !important; }
+    .cta-sparkle{ display:none !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -345,7 +394,23 @@
         <a class="wordmark" href="index.html">DAVOS <span>NEURODIVERSITY</span> SUMMIT</a>
       </div>
       <div class="cta-detail">
-        <p class="cta-eyebrow">Join us at DNS 2027</p>
+        <div class="cta-eyebrow-wrap">
+          <p class="cta-eyebrow">Join us at DNS 2027</p>
+          <svg class="cta-sparkle" style="left:1%; top:-12px; width:14px; height:14px; animation-delay:0.5s; animation-duration:0.7s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:10%; top:20px; width:11px; height:11px; animation-delay:0.62s; animation-duration:0.65s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:16%; top:-16px; width:19px; height:19px; animation-delay:0.95s; animation-duration:0.85s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:27%; top:10px; width:12px; height:12px; animation-delay:1.05s; animation-duration:0.6s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:34%; top:-9px; width:16px; height:16px; animation-delay:1.4s; animation-duration:0.75s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:42%; top:22px; width:22px; height:22px; animation-delay:1.55s; animation-duration:0.95s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:50%; top:-18px; width:13px; height:13px; animation-delay:1.6s; animation-duration:0.6s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:58%; top:8px; width:17px; height:17px; animation-delay:1.95s; animation-duration:0.8s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:65%; top:-11px; width:10px; height:10px; animation-delay:2.1s; animation-duration:0.55s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:73%; top:19px; width:20px; height:20px; animation-delay:2.15s; animation-duration:0.9s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:80%; top:-14px; width:14px; height:14px; animation-delay:2.55s; animation-duration:0.7s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:87%; top:12px; width:18px; height:18px; animation-delay:2.7s; animation-duration:0.85s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:93%; top:-8px; width:11px; height:11px; animation-delay:2.95s; animation-duration:0.6s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          <svg class="cta-sparkle" style="left:97%; top:17px; width:16px; height:16px; animation-delay:3.2s; animation-duration:0.75s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+        </div>
         <p class="cta-sub">Virtually, or in the Alps</p>
       </div>
     </div>
@@ -582,8 +647,8 @@
     var nav = document.querySelector('nav');
     if(!nav) return;
     function update(){
-      if(window.scrollY > 60){ nav.classList.add('is-scrolled'); }
-      else if(window.scrollY < 20){ nav.classList.remove('is-scrolled'); }
+      if(window.scrollY > 90){ nav.classList.add('is-scrolled'); }
+      else if(window.scrollY < 10){ nav.classList.remove('is-scrolled'); }
     }
     update();
     window.addEventListener('scroll', update, { passive:true });
