@@ -239,38 +239,54 @@
   .footer-links a:hover{ color:var(--gold-soft); }
 
 
-  /* PRESS INDEX */
-  .press-list{ margin-top:26px; border-top:1px solid var(--rule); }
-  .press-item{ border-bottom:1px solid var(--rule); }
+  /* PRESS — LEAD SLOT */
+  .lead{ display:block; text-decoration:none; color:inherit; }
+  .lead-figure{ position:relative; display:block; margin:0 0 22px; border:1px solid var(--rule); border-radius:3px; overflow:hidden; }
+  .lead-figure img{ display:block; width:100%; height:auto; }
+  .lead-meta{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 14px; }
+  .lead-source{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ice); margin:0; }
+  .lead-date{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold-soft); margin:0; }
+  .lead-rule{ width:22px; height:1px; background:var(--rule); }
+  .lead h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(25px,4.2vw,38px); line-height:1.14; letter-spacing:-0.01em; margin:0 0 18px; color:var(--ink); max-width:22ch; transition:color 0.2s ease; }
+  .lead:hover h2{ color:var(--gold-soft); }
+  .lead-standfirst{ font-size:16px; color:var(--ink-muted); max-width:60ch; margin:0 0 22px; }
+
+  /* PRESS — THE RECORD (timeline grammar, reused from the Chicago component) */
+  .press-line{ position:relative; padding-left:28px; margin-top:30px; }
+  .press-line::before{ content:""; position:absolute; left:5px; top:10px; bottom:10px; width:1px; background:var(--rule); }
+  .press-item{ position:relative; }
+  .press-dot{ position:absolute; left:-23px; top:26px; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--ink-muted); transition:border-color 0.2s ease; z-index:2; }
+  .press-item[open] .press-dot, .press-item:hover .press-dot{ border-color:var(--gold-soft); }
   .press-item > summary{
-    list-style:none; cursor:pointer; display:flex; gap:20px; align-items:flex-start;
-    padding:22px 0; transition:opacity 0.2s ease;
+    list-style:none; cursor:pointer; display:flex; gap:18px; align-items:flex-start;
+    padding:20px 0; border-bottom:1px solid var(--rule); transition:opacity 0.2s ease;
   }
   .press-item > summary::-webkit-details-marker{ display:none; }
-  .press-item > summary:hover{ opacity:0.78; }
+  .press-item > summary:hover{ opacity:0.82; }
   .press-item > summary:focus-visible{ outline:1px solid var(--gold); outline-offset:4px; }
-  .press-num{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--gold); padding-top:6px; flex-shrink:0; width:24px; }
+  .press-item[open] > summary{ border-bottom-color:transparent; }
   .press-body{ flex:1; min-width:0; }
-  .press-source{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ice); margin:0 0 8px; }
-  .press-title{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(17px,2.4vw,20.5px); line-height:1.32; color:var(--ink); margin:0; }
-  .press-chevron{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-muted); padding-top:7px; flex-shrink:0; transition:transform 0.25s ease; }
+  .press-meta{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0 0 7px; }
+  .press-source{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ice); }
+  .press-date{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--gold-soft); }
+  .press-title{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(16.5px,2.3vw,19px); line-height:1.33; color:var(--ink); margin:0; }
+  .press-chevron{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-muted); padding-top:6px; flex-shrink:0; transition:transform 0.25s ease; }
   .press-item[open] .press-chevron{ transform:rotate(180deg); }
   .press-item[open] .press-title{ color:var(--gold-soft); }
-  .press-detail{ padding:0 0 26px 44px; }
-  .press-detail p{ font-size:15px; color:var(--ink-muted); margin:0 0 18px; max-width:62ch; }
-  .press-thumb{
-    display:block; width:100%; max-width:520px; height:auto; margin:0 0 20px;
-    border:1px solid var(--rule); border-radius:3px;
-  }
+  .press-detail{ padding:2px 0 26px 0; border-bottom:1px solid var(--rule); }
+  .press-thumb{ display:block; width:100%; max-width:460px; height:auto; margin:0 0 18px; border:1px solid var(--rule); border-radius:3px; }
+  .press-detail p{ font-size:14.5px; color:var(--ink-muted); margin:0 0 18px; max-width:62ch; }
   .press-read{
     font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em;
     text-transform:uppercase; color:var(--gold-soft); text-decoration:none;
     display:inline-flex; align-items:center; gap:7px;
   }
   .press-read:hover{ color:var(--gold); }
+  .press-tag{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.05em; color:var(--ink-muted); border:1px solid var(--rule); padding:4px 9px; border-radius:2px; }
   @media (max-width:600px){
-    .press-detail{ padding-left:0; }
-    .press-item > summary{ gap:14px; }
+    .press-line{ padding-left:22px; }
+    .press-dot{ left:-19px; }
+    .press-item > summary{ gap:12px; }
   }
 
   @media (prefers-reduced-motion: reduce){ *{ transition-duration:0.01ms !important; animation-duration:0.01ms !important; } }
@@ -407,92 +423,43 @@
   </svg>
   <div class="wrap">
     <p class="eyebrow">Press</p>
-    <h1>What others are <em>saying</em>.</h1>
-    <p class="page-sub">Independent coverage of the Summit and the people in it, alongside announcements from DNS itself. Select any item to read more.</p>
+    <h1>The Summit in the <em>press</em>.</h1>
+    <p class="page-sub">Independent coverage, partner accounts, and announcements from DNS — newest first. Select any item to read more.</p>
   </div>
 </header>
 
 <main class="wrap">
 
   <section>
-    <p class="kicker">Coverage</p>
-    <h2>In the press.</h2>
-    <div class="press-list">
-      <details class="press-item">
-        <summary>
-          <span class="press-num">01</span>
-          <span class="press-body">
-            <span class="press-source">Lloyds Banking Group</span>
-            <span class="press-title">A blueprint for disability and neuro-inclusion</span>
-          </span>
-          <span class="press-chevron">▾</span>
-        </summary>
-        <div class="press-detail">
-          <img class="press-thumb" src="press-lloyds.jpg" alt="Illustration accompanying the Lloyds Banking Group article on disability and neuro-inclusion." loading="lazy" width="880">
-          <p>Lloyds Banking Group's own account of its disability and neuro-inclusion strategy, which records the group being honoured at the 2025 Davos Neurodiversity Summit with the Impact Award for Corporate Leadership in Neuro-inclusion.</p>
-          <a class="press-read" href="https://www.lloydsbankinggroup.com/insights/a-blueprint-for-disability-and-neuro-inclusion.html" target="_blank" rel="noopener">Read at Lloyds Banking Group <span aria-hidden="true">→</span></a>
-        </div>
-      </details>
-
-      <details class="press-item">
-        <summary>
-          <span class="press-num">02</span>
-          <span class="press-body">
-            <span class="press-source">Harper's Bazaar UK</span>
-            <span class="press-title">Why we need to start talking about neurodiversity in the workplace</span>
-          </span>
-          <span class="press-chevron">▾</span>
-        </summary>
-        <div class="press-detail">
-          <p>A feature on the cost to organisations of workplaces that quietly obstruct neurodivergent employees, set against estimates that roughly one in five people worldwide are neurodivergent.</p>
-          <a class="press-read" href="https://www.harpersbazaar.com/uk/work/a62225433/neurodiversity-workplace/" target="_blank" rel="noopener">Read at Harper's Bazaar UK <span aria-hidden="true">→</span></a>
-        </div>
-      </details>
-
-      <details class="press-item">
-        <summary>
-          <span class="press-num">03</span>
-          <span class="press-body">
-            <span class="press-source">Big Think</span>
-            <span class="press-title">Why a neurodivergent team will be a golden asset in the AI workplace</span>
-          </span>
-          <span class="press-chevron">▾</span>
-        </summary>
-        <div class="press-detail">
-          <img class="press-thumb" src="press-bigthink.jpg" alt="Illustration of two profiles facing each other in balance beneath a lightbulb." loading="lazy" width="880">
-          <p>An argument that as artificial intelligence absorbs linear, rules-based work, the distinctive value of a human team shifts toward the non-linear thinking that neurodivergent people bring to it.</p>
-          <a class="press-read" href="https://bigthink.com/business/why-a-neurodivergent-team-will-be-a-golden-asset-in-the-ai-workplace/" target="_blank" rel="noopener">Read at Big Think <span aria-hidden="true">→</span></a>
-        </div>
-      </details>
-
-      <!-- ADDED — not on the current Wix press page; confirm before publishing -->
-      <details class="press-item">
-        <summary>
-          <span class="press-num">04</span>
-          <span class="press-body">
-            <span class="press-source">Steps Community · 2026</span>
-            <span class="press-title">Davos Neurodiversity Summit 2026: From Awareness to Action</span>
-          </span>
-          <span class="press-chevron">▾</span>
-        </summary>
-        <div class="press-detail">
-          <p>A partner account of the 2026 intergenerational panel, moderated by Jonathan Mok, with Professor Lawrence Fung of the Stanford Neurodiversity Project, Ava Chan of Neurodiversity HK, Dayana Zhumabayeva of Hi ADHD, and Steps CEO Max Simpson — on recognising neurodivergent young adults as co-designers rather than beneficiaries.</p>
-          <a class="press-read" href="https://www.stepscommunity.com/blog/davos-neurodiversity-summit-2026-from-awareness-to-action/" target="_blank" rel="noopener">Read at Steps Community <span aria-hidden="true">→</span></a>
-        </div>
-      </details>
-    </div>
+    <p class="kicker">Latest</p>
+    <!-- LEAD SLOT — when new coverage lands, put it here and move the previous lead
+         down into the record below. Image is optional; the slot works without one. -->
+    <a class="lead" id="lead-item" href="https://www.prnewswire.com/news-releases/understoodorg-and-the-davos-neurodiversity-summit-team-up-for-special-season-of-minds-at-work-podcast-302689614.html" target="_blank" rel="noopener">
+      <div class="lead-meta">
+        <span class="lead-source">PR Newswire</span>
+        <span class="lead-rule"></span>
+        <span class="lead-date">February 17, 2026</span>
+      </div>
+      <h2>Understood.org and DNS team up for a special season of <em>Minds at Work</em>.</h2>
+      <p class="lead-standfirst">A special season of Understood.org's podcast, hosted by Dr. Maureen Dunne, exploring the themes emerging from the World Economic Forum Annual Meeting and what they mean for leadership, business, and neuroinclusion.</p>
+      <span class="press-read">Read the announcement <span aria-hidden="true">→</span></span>
+    </a>
   </section>
 
   <section>
-    <p class="kicker">Announcements</p>
-    <h2>From the Summit.</h2>
-    <div class="press-list">
-      <!-- ADDED — not on the current Wix press page; confirm before publishing -->
-      <details class="press-item">
+    <p class="kicker">The Record</p>
+    <h2>Coverage and announcements.</h2>
+    <div class="press-line">
+      <!-- ADDED — not on the legacy Wix press page; confirm before publishing -->
+      <details class="press-item" id="understood-minds-at-work">
+        <span class="press-dot"></span>
         <summary>
-          <span class="press-num">05</span>
           <span class="press-body">
-            <span class="press-source">PR Newswire · February 2026</span>
+            <span class="press-meta">
+              <span class="press-source">PR Newswire</span>
+              <span class="press-date">February 17, 2026</span>
+              <span class="press-tag">Announcement</span>
+            </span>
             <span class="press-title">Understood.org and the Davos Neurodiversity Summit team up for a special season of Minds at Work</span>
           </span>
           <span class="press-chevron">▾</span>
@@ -503,12 +470,16 @@
         </div>
       </details>
 
-      <!-- ADDED — not on the current Wix press page; confirm before publishing -->
-      <details class="press-item">
+      <!-- ADDED — not on the legacy Wix press page; confirm before publishing -->
+      <details class="press-item" id="dns-2026-momentum">
+        <span class="press-dot"></span>
         <summary>
-          <span class="press-num">06</span>
           <span class="press-body">
-            <span class="press-source">Newswire · February 2026</span>
+            <span class="press-meta">
+              <span class="press-source">Newswire</span>
+              <span class="press-date">February 5, 2026</span>
+              <span class="press-tag">Announcement</span>
+            </span>
             <span class="press-title">Davos Neurodiversity Summit 2026 drives global momentum for neuroinclusive leadership</span>
           </span>
           <span class="press-chevron">▾</span>
@@ -519,17 +490,100 @@
         </div>
       </details>
 
-      <details class="press-item">
+      <!-- ADDED — not on the legacy Wix press page; confirm before publishing -->
+      <details class="press-item" id="steps-awareness-to-action">
+        <span class="press-dot"></span>
         <summary>
-          <span class="press-num">07</span>
           <span class="press-body">
-            <span class="press-source">Newswire · 2025</span>
+            <span class="press-meta">
+              <span class="press-source">Steps Community</span>
+              <span class="press-date">January 30, 2026</span>
+              <span class="press-tag">Coverage</span>
+            </span>
+            <span class="press-title">Davos Neurodiversity Summit 2026: From Awareness to Action</span>
+          </span>
+          <span class="press-chevron">▾</span>
+        </summary>
+        <div class="press-detail">
+          <p>A partner account of the 2026 intergenerational panel, moderated by Jonathan Mok, with Professor Lawrence Fung of the Stanford Neurodiversity Project, Ava Chan of Neurodiversity HK, Dayana Zhumabayeva of Hi ADHD, and Steps CEO Max Simpson — on recognising neurodivergent young adults as co-designers rather than beneficiaries.</p>
+          <a class="press-read" href="https://www.stepscommunity.com/blog/davos-neurodiversity-summit-2026-from-awareness-to-action/" target="_blank" rel="noopener">Read at Steps Community <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+
+      <details class="press-item" id="lloyds-blueprint">
+        <span class="press-dot"></span>
+        <summary>
+          <span class="press-body">
+            <span class="press-meta">
+              <span class="press-source">Lloyds Banking Group</span>
+              <span class="press-date">2025 — confirm</span>
+              <span class="press-tag">Coverage</span>
+            </span>
+            <span class="press-title">A blueprint for disability and neuro-inclusion</span>
+          </span>
+          <span class="press-chevron">▾</span>
+        </summary>
+        <div class="press-detail">
+          <img class="press-thumb" src="press-lloyds.jpg" alt="Illustration accompanying the Lloyds Banking Group article on disability and neuro-inclusion." loading="lazy">
+          <p>Lloyds Banking Group's own account of its disability and neuro-inclusion strategy, which records the group being honoured at the 2025 Davos Neurodiversity Summit with the Impact Award for Corporate Leadership in Neuro-inclusion.</p>
+          <a class="press-read" href="https://www.lloydsbankinggroup.com/insights/a-blueprint-for-disability-and-neuro-inclusion.html" target="_blank" rel="noopener">Read at Lloyds Banking Group <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+
+      <details class="press-item" id="bigthink-golden-asset">
+        <span class="press-dot"></span>
+        <summary>
+          <span class="press-body">
+            <span class="press-meta">
+              <span class="press-source">Big Think</span>
+              <span class="press-date">Date to be confirmed</span>
+              <span class="press-tag">Coverage</span>
+            </span>
+            <span class="press-title">Why a neurodivergent team will be a golden asset in the AI workplace</span>
+          </span>
+          <span class="press-chevron">▾</span>
+        </summary>
+        <div class="press-detail">
+          <img class="press-thumb" src="press-bigthink.jpg" alt="Illustration of two profiles facing each other in balance beneath a lightbulb." loading="lazy">
+          <p>An argument that as artificial intelligence absorbs linear, rules-based work, the distinctive value of a human team shifts toward the non-linear thinking that neurodivergent people bring to it.</p>
+          <a class="press-read" href="https://bigthink.com/business/why-a-neurodivergent-team-will-be-a-golden-asset-in-the-ai-workplace/" target="_blank" rel="noopener">Read at Big Think <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+
+      <details class="press-item" id="harpers-bazaar-workplace">
+        <span class="press-dot"></span>
+        <summary>
+          <span class="press-body">
+            <span class="press-meta">
+              <span class="press-source">Harper's Bazaar UK</span>
+              <span class="press-date">Date to be confirmed</span>
+              <span class="press-tag">Coverage</span>
+            </span>
+            <span class="press-title">Why we need to start talking about neurodiversity in the workplace</span>
+          </span>
+          <span class="press-chevron">▾</span>
+        </summary>
+        <div class="press-detail">
+          <p>A feature on the cost to organisations of workplaces that quietly obstruct neurodivergent employees, set against estimates that roughly one in five people worldwide are neurodivergent.</p>
+          <a class="press-read" href="https://www.harpersbazaar.com/uk/work/a62225433/neurodiversity-workplace/" target="_blank" rel="noopener">Read at Harper's Bazaar UK <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+
+      <details class="press-item" id="inaugural-2025-close">
+        <span class="press-dot"></span>
+        <summary>
+          <span class="press-body">
+            <span class="press-meta">
+              <span class="press-source">Newswire</span>
+              <span class="press-date">2025 — confirm</span>
+              <span class="press-tag">Announcement</span>
+            </span>
             <span class="press-title">Inaugural 2025 Davos Neurodiversity Summit comes to a successful close</span>
           </span>
           <span class="press-chevron">▾</span>
         </summary>
         <div class="press-detail">
-          <img class="press-thumb" src="press-newswire-2025.jpg" alt="Delegates seated around a table before a World Economic Forum screen in Davos." loading="lazy" width="880">
+          <img class="press-thumb" src="press-newswire-2025.jpg" alt="Delegates seated around a table before a World Economic Forum screen in Davos." loading="lazy">
           <p>Autism Community Ventures, the public benefit corporation behind the NODI initiative, announcing the close of the first Davos Neurodiversity Summit, held during the 2025 World Economic Forum in Davos from January 20 to 24.</p>
           <a class="press-read" href="https://www.newswire.com/news/inaugural-2025-davos-neurodiversity-summit-during-the-world-economic-22511332" target="_blank" rel="noopener">Read at Newswire <span aria-hidden="true">→</span></a>
         </div>
