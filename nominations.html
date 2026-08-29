@@ -309,7 +309,7 @@
   .award-item{ position:relative; }
   /* The marker is a plus, not a bullet — the row has to advertise that it opens. */
   .award-plus{
-    flex-shrink:0; width:24px; height:24px; border-radius:2px; margin-top:1px;
+    flex-shrink:0; align-self:center; width:24px; height:24px; border-radius:2px; margin-top:1px;
     background:var(--bg); border:1px solid var(--rule); color:var(--ink-muted);
     display:flex; align-items:center; justify-content:center;
     font-family:'IBM Plex Mono', monospace; font-size:15px; line-height:1;
@@ -327,7 +327,7 @@
   .award-item > summary:hover{ opacity:0.82; }
   .award-item > summary:focus-visible{ outline:1px solid var(--gold); outline-offset:4px; }
   .award-item[open] > summary{ border-bottom-color:transparent; }
-  .award-body{ flex:1; min-width:0; }
+  .award-body{ flex:0 1 620px; min-width:0; }
   .award-name{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(16px,2.2vw,18.5px); line-height:1.3; color:var(--ink); margin:0 0 5px; }
   .award-item[open] .award-name{ color:var(--gold-soft); }
   .award-teaser{ font-size:13px; color:var(--ink-muted); line-height:1.45; margin:0; max-width:58ch; }
@@ -522,11 +522,11 @@
       <div class="award-line">
       <details class="award-item" id="corporate-leaders-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Corporate Leaders Impact Award</p>
             <p class="award-teaser">For organizations and leaders who have moved neuroinclusion from policy into systemic practice.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors an organization or a top organizational leader demonstrating measurable transformation in how it, or they, recruits, develops, and empowers cognitively diverse talent. Eligible nominees have embedded neuroinclusion principles into core business operations — showing sustained, data-backed progress in innovation outcomes, team performance, and employee well-being. This award celebrates leadership that moves beyond policy to systemic practice.</p>
@@ -535,11 +535,11 @@
       </details>
       <details class="award-item" id="social-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Social Impact Award</p>
             <p class="award-teaser">For initiatives creating measurable societal change through the inclusion of diverse thinkers.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Recognizes an initiative, organization, or individual creating significant positive societal change through inclusion of diverse thinkers and doers. Nominees lead programs that measurably expand opportunity, shift public understanding, or improve life outcomes for underrepresented or misunderstood populations — locally or globally.</p>
@@ -548,11 +548,11 @@
       </details>
       <details class="award-item" id="unsung-hero-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Unsung Hero Award</p>
             <p class="award-teaser">For the quiet catalysts — mentors, advocates, and educators working without fanfare.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Celebrates quiet catalysts — the mentors, advocates, educators, and community members whose behind-the-scenes efforts transform lives without fanfare. Ideal nominees demonstrate extraordinary commitment to bridging understanding, removing barriers, and fostering belonging at the individual or grassroots level.</p>
@@ -561,11 +561,11 @@
       </details>
       <details class="award-item" id="young-changemaker-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Young Changemaker Award</p>
             <p class="award-teaser">For emerging leaders aged 14–30 reshaping the future through inclusive thinking.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors emerging leaders who are reshaping the future through courage, creativity, and inclusive thinking. Nominees may be students, innovators, or entrepreneurs driving real-world change through projects that exemplify empathy, ingenuity, and collaboration across difference.</p>
@@ -574,11 +574,11 @@
       </details>
       <details class="award-item" id="bridgemaker-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Bridgemaker Award</p>
             <p class="award-teaser">For those who build uncommon alliances across sectors, disciplines, and communities.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Recognizes individuals or teams who build uncommon alliances — between sectors, disciplines, or communities — to advance neuroinclusive progress. Candidates exemplify systems thinking, turning insight into connection and connection into action. They embody the principle that innovation happens at the intersection.</p>
@@ -587,11 +587,11 @@
       </details>
       <details class="award-item" id="community-college-leadership-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Community College Leadership Impact Award</p>
             <p class="award-teaser">For leaders reimagining access and student support across the community college ecosystem.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Celebrates exceptional leadership within the community college ecosystem advancing opportunity for all kinds of minds. Eligible nominees have reimagined access, curriculum design, or student support to enable broader participation in education and workforce pathways. Their work reflects scalable, replicable models for inclusive excellence.</p>
@@ -600,11 +600,11 @@
       </details>
       <details class="award-item" id="public-awareness-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Public Awareness Award</p>
             <p class="award-teaser">For those bringing neurodiversity to mainstream audiences at scale.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Celebrates individuals who elevate neurodiversity understanding at scale — bringing the message to mainstream audiences through storytelling, media, platforms, and cultural influence. Nominees may include public figures, creators, journalists, advocates, and high-reach influencers who use their visibility to reduce stigma, spark conversation, and inspire action. This award honors impact, plain and simple.</p>
@@ -613,11 +613,11 @@
       </details>
       <details class="award-item" id="higher-education-leadership-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Higher Education Leadership Impact Award</p>
             <p class="award-teaser">For colleges, universities, and leaders pioneering systemic inclusion in higher learning.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors colleges, universities, or individual leaders pioneering systemic inclusion of diverse cognitive perspectives in higher learning. Nominees show tangible progress in research, teaching, or institutional design that expands participation and fosters next-generation innovation.</p>
@@ -626,11 +626,11 @@
       </details>
       <details class="award-item" id="cultural-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Cultural Impact Award</p>
             <p class="award-teaser">For work in entertainment, comedy, or storytelling that shifts the mainstream conversation.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors an individual whose work in entertainment, comedy, or storytelling has helped expand public understanding of neurodivergence and human difference — by making complex experiences relatable, visible, and culturally resonant. This award recognizes the power of humor and narrative to reduce stigma, spark empathy, and shift the mainstream conversation in ways that formal institutions often cannot.</p>
@@ -639,11 +639,11 @@
       </details>
       <details class="award-item" id="innovation-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Innovation Award</p>
             <p class="award-teaser">For technological, educational, or organizational innovations that unlock human potential.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Recognizes groundbreaking technological, educational, or organizational innovations that reduce friction and unlock human potential. Nominees have introduced solutions that make systems more adaptive — whether through AI, design, or policy — and demonstrate measurable, scalable impact.</p>
@@ -652,11 +652,11 @@
       </details>
       <details class="award-item" id="education-impact-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Education Impact Award</p>
             <p class="award-teaser">For educators and programs transforming outcomes for students who learn differently.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors educators, institutions, or programs that have significantly improved access and outcomes for students who think and learn differently. Nominees create learning environments that recognize cognitive variation as an asset and demonstrate transformative results across engagement, retention, and achievement.</p>
@@ -665,11 +665,11 @@
       </details>
       <details class="award-item" id="executive-leadership-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">Executive Leadership Award</p>
             <p class="award-teaser">For senior leaders embedding neuroinclusive design into corporate strategy itself.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Celebrates visionary senior leaders who are embedding neuroinclusive design into the DNA of corporate strategy. Nominees have demonstrated accountability through measurable culture change, transparent metrics, and leadership that treats inclusion not as compliance — but as a source of competitive advantage and human progress.</p>
@@ -678,11 +678,11 @@
       </details>
       <details class="award-item" id="stem-inclusion-and-innovation-award">
         <summary>
-          <span class="award-plus" aria-hidden="true"></span>
           <div class="award-body">
             <p class="award-name">STEM Inclusion &amp; Innovation Award</p>
             <p class="award-teaser">For scientific leaders broadening participation across science, technology, engineering, and mathematics.</p>
           </div>
+          <span class="award-plus" aria-hidden="true"></span>
         </summary>
         <div class="award-detail">
           <p>Honors a visionary scientific leader whose work has significantly advanced pathways for neurodiverse and underrepresented individuals in science, technology, engineering, and mathematics. This award recognizes trailblazers who combine world-class research with systems-level innovation to create inclusive structures, mentorship, and opportunities that broaden participation in STEM fields. Nominees demonstrate measurable impact in developing programs, partnerships, and institutional practices that empower neurodivergent talent to thrive in discovery, education, and professional careers.</p>
