@@ -219,10 +219,9 @@
     border-bottom: 1px solid var(--rule);
   }
   .hero .ridgeline{
-    position:absolute; left:0; right:0; bottom:0; height:220px;
+    position:absolute; left:0; right:0; bottom:0; width:100%; height:220px;
     opacity: 0.55;
-    pointer-events:none;
-  }
+    pointer-events:none; display:block; }
   .eyebrow{
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
@@ -253,30 +252,13 @@
     margin: 0 0 44px;
     font-weight: 300;
   }
-  .stat-strip{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
-    position: relative;
-    z-index: 2;
-  }
-  .stat{
-    background: var(--bg-panel);
-    padding: 22px 24px;
-  }
-  .stat .num{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 28px;
-    color: var(--gold-soft);
-    display:block;
-  }
-  .stat .label{
-    font-size: 12.5px;
-    color: var(--ink-muted);
-    margin-top: 4px;
-  }
+  /* STAT STRIP — nodes on a line, echoes the Chicago timeline; transparent so the ridgeline stays visible */
+  .stat-strip{ position:relative; z-index:2; margin-top:56px; display:flex; gap:36px; }
+  .stat-strip::before{ content:""; position:absolute; top:5px; left:0; right:0; height:1px; background:rgba(243,239,228,0.18); }
+  .stat-node{ position:relative; flex:1; padding-top:24px; }
+  .stat-node .node-dot{ position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--gold-soft); }
+  .stat-num{ font-family:'IBM Plex Mono', monospace; font-size:28px; color:var(--gold-soft); line-height:1; margin-bottom:8px; }
+  .stat-label{ font-size:12.5px; color:var(--ink-muted); line-height:1.4; max-width:22ch; }
 
   /* ---------- SECTION SCAFFOLD ---------- */
   section{ padding: 64px 0; border-bottom: 1px solid var(--rule); }
@@ -412,7 +394,13 @@
   @media (max-width: 720px){
     .tier{ grid-template-columns: 1fr; gap: 10px; }
     .gauge-wrap{ align-items:flex-start; }
-    .stat-strip{ grid-template-columns: 1fr; }
+    .stat-strip{ flex-direction:column; gap:0; }
+    .stat-strip::before{ display:none; }
+    .stat-node{ padding-top:0; padding-left:28px; padding-bottom:28px; }
+    .stat-node:last-child{ padding-bottom:0; }
+    .stat-node::before{ content:""; position:absolute; left:5px; top:16px; bottom:-12px; width:1px; background:rgba(243,239,228,0.18); }
+    .stat-node:last-child::before{ display:none; }
+    .stat-node .node-dot{ top:5px; left:0; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -491,12 +479,12 @@
           <button class="drop-toggle">Media <span class="caret">▾</span></button>
           <div class="drop-panel">
             <a href="podcast.html">Podcast</a>
-            <a href="press.html">Press</a>
+            <a href="https://www.davosneurodiversitysummit.com/press">Press</a>
           </div>
         </div>
 
         <a href="about.html">About</a>
-        <a href="sponsorship.html" class="current">Get Involved</a>
+        <a href="sponsorship.html" class="current">Sponsorship</a>
       </div>
       <div class="nav-row-main-right">
         <button class="overview-btn" id="overviewBtn" aria-label="Show full site menu" title="Show full site menu">
@@ -535,12 +523,12 @@
         <div class="cm-cluster-label"><span class="cm-dot-lg"></span>Media</div>
         <div class="cm-children">
           <a href="podcast.html">Podcast</a>
-          <a href="press.html">Press</a>
+          <a href="https://www.davosneurodiversitysummit.com/press">Press</a>
         </div>
       </div>
 
       <a class="cm-leaf" href="about.html"><span class="cm-dot"></span>About</a>
-      <a class="cm-leaf" href="sponsorship.html"><span class="cm-dot"></span>Get Involved</a>
+      <a class="cm-leaf" href="sponsorship.html"><span class="cm-dot"></span>Sponsorship</a>
 
     </div>
   </div>
@@ -559,18 +547,21 @@
   </div>
   <div class="wrap">
     <div class="stat-strip">
-      <div class="stat">
-        <span class="num">~230</span>
-        <span class="label">in-person participants across principal programming</span>
-      </div>
-      <div class="stat">
-        <span class="num">~3,000</span>
-        <span class="label">virtual participants joining globally</span>
-      </div>
-      <div class="stat">
-        <span class="num">1 wk</span>
-        <span class="label">held during WEF Annual Meeting, January 2027</span>
-      </div>
+        <div class="stat-node">
+          <span class="node-dot"></span>
+          <div class="stat-num">~230</div>
+          <div class="stat-label">in-person participants across principal programming</div>
+        </div>
+        <div class="stat-node">
+          <span class="node-dot"></span>
+          <div class="stat-num">~3,000</div>
+          <div class="stat-label">virtual participants joining globally</div>
+        </div>
+        <div class="stat-node">
+          <span class="node-dot"></span>
+          <div class="stat-num">1 wk</div>
+          <div class="stat-label">held during WEF Annual Meeting, January 2027</div>
+        </div>
     </div>
   </div>
 </header>
