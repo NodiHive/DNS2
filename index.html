@@ -219,7 +219,25 @@
     position:relative; overflow:hidden; border:1px solid var(--rule);
     aspect-ratio: 908 / 1080; align-self:stretch;
   }
-  .hero-image img{ width:100%; height:100%; object-fit:cover; object-position: 62% 55%; display:block; }
+  .hero-slides{ position:absolute; inset:0; }
+  .hero-image img.hero-slide{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+    display:block; opacity:0; transition:opacity 1.1s ease-in-out;
+  }
+  .hero-image img.hero-slide.is-active{ opacity:1; }
+  /* WCAG 2.2.2 — auto-advancing content needs a real pause control, not just hover-to-stop. */
+  .hero-pause{
+    all:unset; position:absolute; right:12px; bottom:12px; z-index:3; cursor:pointer;
+    width:26px; height:26px; display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(243,239,228,0.28); border-radius:2px;
+    background:rgba(14,20,40,0.55); color:var(--ink-muted);
+    font-size:9px; letter-spacing:1px; line-height:1; transition:color .2s ease, border-color .2s ease;
+  }
+  .hero-pause:hover, .hero-pause:focus-visible{ color:var(--gold-soft); border-color:var(--gold-soft); }
+  @media (prefers-reduced-motion: reduce){
+    .hero-image img.hero-slide{ transition:none; }
+    .hero-pause{ display:none; }
+  }
   .hero-image::after{
     content:""; position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(14,20,40,0) 60%, rgba(14,20,40,0.55) 100%);
@@ -516,7 +534,14 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="davos1.png" alt="A roundtable of global leaders convened above Davos, Switzerland, at night, overlooking the illuminated town and mountains.">
+        <div class="hero-slides" id="heroSlides">
+          <img class="hero-slide is-active" src="hero-02-panel.jpg" alt="Panel discussion at DNS 2026, four speakers on stage with a hybrid video call displayed on screen behind them" fetchpriority="high" decoding="async">
+          <img class="hero-slide" data-src="hero-05-alpine-dusk.jpg" alt="Snow-covered mountain peaks above the town of Davos at dusk, chalet rooftops lit from within" decoding="async">
+          <img class="hero-slide" data-src="hero-03-workshop.jpg" alt="Small-group workshop session in a wood-panelled Alpine cabin, participants reviewing an inclusive design canvas" decoding="async">
+          <img class="hero-slide" data-src="hero-04-speaker.jpg" alt="Speaker addressing the audience at DNS, holding a microphone in front of a Davos Neurodiversity Summit backdrop" decoding="async">
+          <img class="hero-slide" data-src="hero-01-balcony-view.jpg" alt="View from a Davos hotel balcony over a wooden railing toward a church spire and snow-capped mountains" decoding="async">
+        </div>
+        <button class="hero-pause" id="heroPause" type="button" aria-label="Pause image rotation">&#10073;&#10073;</button>
         <span class="cap">Davos, Switzerland</span>
       </div>
     </div>
@@ -721,6 +746,55 @@
       if(e.key === 'Escape') close();
     });
   })();
+</script>
+<script>
+/* Hero rotation.
+   - Slide one ships in the HTML and loads eagerly; the other four are fetched
+     only after load, so first paint costs one image (268 KB), not five (1.4 MB).
+   - prefers-reduced-motion: no rotation at all — the first image simply stays.
+     Not a faster fade. The pause control is hidden; there is nothing to pause.
+   - Otherwise auto-advances with a real pause control (WCAG 2.2.2), and stops
+     while the tab is hidden. */
+(function(){
+  var wrap = document.getElementById('heroSlides');
+  var btn  = document.getElementById('heroPause');
+  if(!wrap) return;
+  var slides = wrap.querySelectorAll('.hero-slide');
+  if(slides.length < 2){ if(btn) btn.style.display='none'; return; }
+
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    if(btn) btn.style.display='none';
+    return;
+  }
+
+  function loadRest(){
+    for(var n=1;n<slides.length;n++){
+      var d = slides[n].getAttribute('data-src');
+      if(d && !slides[n].getAttribute('src')) slides[n].setAttribute('src', d);
+    }
+  }
+  if(document.readyState === 'complete') loadRest();
+  else window.addEventListener('load', loadRest);
+
+  var idx = 0, timer = null, paused = false, INTERVAL = 6500;
+  function step(){
+    slides[idx].classList.remove('is-active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('is-active');
+  }
+  function start(){ if(!timer && !paused) timer = setInterval(step, INTERVAL); }
+  function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+
+  if(btn){
+    btn.addEventListener('click', function(){
+      paused = !paused;
+      if(paused){ stop(); btn.innerHTML = '&#9654;'; btn.setAttribute('aria-label','Resume image rotation'); }
+      else { btn.innerHTML = '&#10073;&#10073;'; btn.setAttribute('aria-label','Pause image rotation'); start(); }
+    });
+  }
+  document.addEventListener('visibilitychange', function(){ if(document.hidden) stop(); else start(); });
+  start();
+})();
 </script>
 </body>
 </html>
