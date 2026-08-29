@@ -299,7 +299,7 @@
 </style>
 
   <style>
-  /* AWARD ACCORDION — same interaction grammar as the press timeline */
+  /* AWARD ACCORDION — same grammar as the press timeline */
   .award-intro{ max-width:62ch; }
   .award-intro p{ font-size:15px; color:var(--ink-muted); line-height:1.6; margin:0 0 16px; }
   .section-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-soft); margin:0 0 18px; display:flex; align-items:center; gap:10px; }
@@ -324,17 +324,41 @@
   .award-teaser{ font-size:13px; color:var(--ink-muted); line-height:1.45; margin:0; max-width:58ch; }
   .award-chevron{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-muted); padding-top:6px; flex-shrink:0; transition:transform 0.25s ease; }
   .award-item[open] .award-chevron{ transform:rotate(180deg); }
-  .award-detail{ padding:2px 0 24px 0; border-bottom:1px solid var(--rule); }
-  .award-detail p{ font-size:14.5px; color:var(--ink-muted); line-height:1.65; margin:0; max-width:64ch; }
+  .award-detail{ padding:2px 0 24px 0; border-bottom:1px solid var(--rule); display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap; }
+  .award-detail p{ font-size:14.5px; color:var(--ink-muted); line-height:1.65; margin:0; max-width:60ch; flex:1; min-width:280px; }
+  .award-nominate{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--bg); background:var(--gold-soft); text-decoration:none; padding:11px 18px; border-radius:2px;
+    display:inline-block; flex-shrink:0; transition:background 0.2s ease;
+  }
+  .award-nominate:hover{ background:var(--gold); }
+  .award-nominate:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
 
-  /* NOMINATION FORM FRAME — seam framed deliberately, per the register-section pattern */
-  .nom-frame-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-muted); margin:0 0 12px; }
-  .nom-frame-wrap{ border:1px solid var(--rule); border-radius:4px; overflow:hidden; background:var(--bg); }
-  .nom-frame-wrap iframe{ width:100%; height:1400px; border:0; display:block; background:var(--bg); }
-  .nom-placeholder{ padding:44px 28px; text-align:center; }
-  .nom-placeholder p{ font-size:14px; color:var(--ink-muted); margin:0 0 8px; }
-  .nom-placeholder .mono{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); }
-  .wall-note{ margin-top:16px; }
+  /* NOMINATION MODAL — same backdrop/card pattern as the Leadership Wall person modal */
+  .nom-backdrop{
+    position:fixed; inset:0; background:rgba(10,14,28,0.82); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:24px;
+  }
+  .nom-backdrop.is-open{ display:flex; }
+  .nom-card{
+    background:var(--bg-panel); border:1px solid var(--rule); border-radius:3px;
+    width:100%; max-width:760px; max-height:88vh; display:flex; flex-direction:column; position:relative;
+  }
+  .nom-head{ padding:20px 26px 16px; border-bottom:1px solid var(--rule); flex-shrink:0; }
+  .nom-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ice); margin:0 0 6px; }
+  .nom-heading{ font-family:'Fraunces', serif; font-weight:500; font-size:19px; color:var(--ink); margin:0; padding-right:34px; }
+  .nom-frame{ flex:1; overflow:hidden; background:#F3EFE4; }
+  .nom-frame iframe{ width:100%; height:100%; min-height:520px; border:0; display:block; }
+  .nom-close{
+    all:unset; position:absolute; top:14px; right:16px; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; font-size:18px; color:var(--ink-muted); line-height:1; padding:6px;
+  }
+  .nom-close:hover, .nom-close:focus-visible{ color:var(--gold-soft); }
+  @media (max-width:600px){
+    .nom-backdrop{ padding:0; }
+    .nom-card{ max-width:none; max-height:100vh; height:100vh; border:0; border-radius:0; }
+    .award-detail{ gap:18px; }
+  }
   </style>
 </head>
 <body>
@@ -472,8 +496,8 @@
   <main class="wrap">
 
     <div class="award-intro">
-      <p>Two things on this page take nominations. The <strong>DNS Awards</strong> recognise specific achievements across thirteen categories, presented at the Summit. The <strong>Leadership Wall</strong> is a standing roll of leaders and allies advancing neuroinclusion worldwide — a nomination there is a recognition of a body of work rather than a single accomplishment.</p>
-      <p>You may nominate someone else or put yourself forward. Nominations are reviewed by the Summit's honours committee; submitting one is not itself a decision.</p>
+      <p>Two things on this page take nominations. The <strong>DNS Awards</strong> recognise specific achievements across thirteen categories, presented at the Summit. The <strong>Leadership Wall</strong> is a standing roll of leaders and allies advancing neuroinclusion worldwide — a nomination there recognises a body of work rather than a single accomplishment.</p>
+      <p>Open any award to read what it looks for, then nominate directly from there. You may nominate someone else or put yourself forward. Nominations are read and considered by the Summit's organisers; submitting one is not itself a decision.</p>
     </div>
 
     <section class="award-block" aria-labelledby="awards-heading">
@@ -490,6 +514,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors an organization or a top organizational leader demonstrating measurable transformation in how it, or they, recruits, develops, and empowers cognitively diverse talent. Eligible nominees have embedded neuroinclusion principles into core business operations — showing sustained, data-backed progress in innovation outcomes, team performance, and employee well-being. This award celebrates leadership that moves beyond policy to systemic practice.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Corporate+Leaders+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Corporate+Leaders+Impact+Award" data-label="Corporate Leaders Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="social-impact-award">
@@ -503,6 +528,7 @@
         </summary>
         <div class="award-detail">
           <p>Recognizes an initiative, organization, or individual creating significant positive societal change through inclusion of diverse thinkers and doers. Nominees lead programs that measurably expand opportunity, shift public understanding, or improve life outcomes for underrepresented or misunderstood populations — locally or globally.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Social+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Social+Impact+Award" data-label="Social Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="unsung-hero-award">
@@ -516,6 +542,7 @@
         </summary>
         <div class="award-detail">
           <p>Celebrates quiet catalysts — the mentors, advocates, educators, and community members whose behind-the-scenes efforts transform lives without fanfare. Ideal nominees demonstrate extraordinary commitment to bridging understanding, removing barriers, and fostering belonging at the individual or grassroots level.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Unsung+Hero+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Unsung+Hero+Award" data-label="Unsung Hero Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="young-changemaker-award">
@@ -529,6 +556,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors emerging leaders who are reshaping the future through courage, creativity, and inclusive thinking. Nominees may be students, innovators, or entrepreneurs driving real-world change through projects that exemplify empathy, ingenuity, and collaboration across difference.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Young+Changemaker+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Young+Changemaker+Award" data-label="Young Changemaker Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="bridgemaker-award">
@@ -542,6 +570,7 @@
         </summary>
         <div class="award-detail">
           <p>Recognizes individuals or teams who build uncommon alliances — between sectors, disciplines, or communities — to advance neuroinclusive progress. Candidates exemplify systems thinking, turning insight into connection and connection into action. They embody the principle that innovation happens at the intersection.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Bridgemaker+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Bridgemaker+Award" data-label="Bridgemaker Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="community-college-leadership-impact-award">
@@ -555,6 +584,7 @@
         </summary>
         <div class="award-detail">
           <p>Celebrates exceptional leadership within the community college ecosystem advancing opportunity for all kinds of minds. Eligible nominees have reimagined access, curriculum design, or student support to enable broader participation in education and workforce pathways. Their work reflects scalable, replicable models for inclusive excellence.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Community+College+Leadership+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Community+College+Leadership+Impact+Award" data-label="Community College Leadership Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="public-awareness-award">
@@ -568,6 +598,7 @@
         </summary>
         <div class="award-detail">
           <p>Celebrates individuals who elevate neurodiversity understanding at scale — bringing the message to mainstream audiences through storytelling, media, platforms, and cultural influence. Nominees may include public figures, creators, journalists, advocates, and high-reach influencers who use their visibility to reduce stigma, spark conversation, and inspire action. This award honors impact, plain and simple.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Public+Awareness+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Public+Awareness+Award" data-label="Public Awareness Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="higher-education-leadership-impact-award">
@@ -581,6 +612,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors colleges, universities, or individual leaders pioneering systemic inclusion of diverse cognitive perspectives in higher learning. Nominees show tangible progress in research, teaching, or institutional design that expands participation and fosters next-generation innovation.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Higher+Education+Leadership+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Higher+Education+Leadership+Impact+Award" data-label="Higher Education Leadership Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="cultural-impact-award">
@@ -594,6 +626,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors an individual whose work in entertainment, comedy, or storytelling has helped expand public understanding of neurodivergence and human difference — by making complex experiences relatable, visible, and culturally resonant. This award recognizes the power of humor and narrative to reduce stigma, spark empathy, and shift the mainstream conversation in ways that formal institutions often cannot.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Cultural+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Cultural+Impact+Award" data-label="Cultural Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="innovation-award">
@@ -607,6 +640,7 @@
         </summary>
         <div class="award-detail">
           <p>Recognizes groundbreaking technological, educational, or organizational innovations that reduce friction and unlock human potential. Nominees have introduced solutions that make systems more adaptive — whether through AI, design, or policy — and demonstrate measurable, scalable impact.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Innovation+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Innovation+Award" data-label="Innovation Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="education-impact-award">
@@ -620,6 +654,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors educators, institutions, or programs that have significantly improved access and outcomes for students who think and learn differently. Nominees create learning environments that recognize cognitive variation as an asset and demonstrate transformative results across engagement, retention, and achievement.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Education+Impact+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Education+Impact+Award" data-label="Education Impact Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="executive-leadership-award">
@@ -633,6 +668,7 @@
         </summary>
         <div class="award-detail">
           <p>Celebrates visionary senior leaders who are embedding neuroinclusive design into the DNA of corporate strategy. Nominees have demonstrated accountability through measurable culture change, transparent metrics, and leadership that treats inclusion not as compliance — but as a source of competitive advantage and human progress.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Executive+Leadership+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=Executive+Leadership+Award" data-label="Executive Leadership Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       <details class="award-item" id="stem-inclusion-and-innovation-award">
@@ -646,6 +682,7 @@
         </summary>
         <div class="award-detail">
           <p>Honors a visionary scientific leader whose work has significantly advanced pathways for neurodiverse and underrepresented individuals in science, technology, engineering, and mathematics. This award recognizes trailblazers who combine world-class research with systems-level innovation to create inclusive structures, mentorship, and opportunities that broaden participation in STEM fields. Nominees demonstrate measurable impact in developing programs, partnerships, and institutional practices that empower neurodivergent talent to thrive in discovery, education, and professional careers.</p>
+          <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=STEM+Inclusion+%26+Innovation+Award" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=An+award&amp;entry.413572632=STEM+Inclusion+%26+Innovation+Award" data-label="STEM Inclusion &amp; Innovation Award" target="_blank" rel="noopener">Nominate →</a>
         </div>
       </details>
       </div>
@@ -655,26 +692,77 @@
       <p class="section-label" id="wall-heading">The DNS Leadership Wall</p>
       <div class="award-intro">
         <p>The Leadership Wall gathers neurodistinct leaders, allies, scientists, and advocates whose work has shaped the field. It is not tied to a single year or a single achievement, and there is no fixed number of places.</p>
-        <p class="wall-note"><a class="press-read" href="leadership-wall.html">See the current wall <span aria-hidden="true">→</span></a></p>
       </div>
-    </section>
-
-    <section class="award-block" aria-labelledby="form-heading">
-      <p class="section-label" id="form-heading">Submit a nomination</p>
-      <p class="nom-frame-label">Nomination form — powered by our submission system</p>
-      <div class="nom-frame-wrap">
-        <!-- NOMINATION FORM SLOT
-             Replace the placeholder div below with the Google Form iframe once the form exists:
-             <iframe src="https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true" loading="lazy">Loading…</iframe>
-             Height is fixed for the longest branch; adjust after testing all paths. -->
-        <div class="nom-placeholder">
-          <p class="mono">Form not yet connected</p>
-          <p>The nomination form will appear here.</p>
-        </div>
+      <div class="award-detail" style="border-bottom:0; padding-top:14px;">
+        <p style="margin:0;">Know someone whose work belongs on the Wall? Tell us who they are and why.</p>
+        <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?usp=pp_url&amp;entry.670249393=The+Leadership+Wall" data-form="https://docs.google.com/forms/d/e/1FAIpQLSemHoEwkDDdqky-VAhY6Cg_qmqrkcqeXOT3IaffkzIj3MKq0g/viewform?embedded=true&amp;usp=pp_url&amp;entry.670249393=The+Leadership+Wall" data-label="the Leadership Wall" target="_blank" rel="noopener">Nominate for the Wall →</a>
       </div>
+      <p style="margin-top:22px;"><a class="press-read" href="leadership-wall.html">See the current wall <span aria-hidden="true">→</span></a></p>
     </section>
 
   </main>
+
+  <div class="nom-backdrop" id="nomBackdrop" role="dialog" aria-modal="true" aria-labelledby="nomHeading">
+    <div class="nom-card">
+      <button class="nom-close" id="nomClose" aria-label="Close nomination form">&#215;</button>
+      <div class="nom-head">
+        <p class="nom-eyebrow">Nomination</p>
+        <p class="nom-heading" id="nomHeading">Nominate</p>
+      </div>
+      <div class="nom-frame" id="nomFrame"></div>
+    </div>
+  </div>
+
+  <script>
+  /* Nomination modal.
+     Each Nominate control is a real link to the prefilled form, so if this
+     script never runs the button still works — it just opens in a new tab.
+     The iframe is created on open and destroyed on close, so the page never
+     carries fourteen Google Form loads. */
+  (function(){
+    var backdrop = document.getElementById('nomBackdrop');
+    var frame    = document.getElementById('nomFrame');
+    var heading  = document.getElementById('nomHeading');
+    var closeBtn = document.getElementById('nomClose');
+    if(!backdrop) return;
+    var lastFocus = null;
+
+    function open(url, label, trigger){
+      lastFocus = trigger || null;
+      heading.textContent = 'Nominate for ' + label;
+      frame.innerHTML = '';
+      var f = document.createElement('iframe');
+      f.setAttribute('src', url);
+      f.setAttribute('title', 'Nomination form');
+      f.setAttribute('loading', 'lazy');
+      frame.appendChild(f);
+      backdrop.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function close(){
+      backdrop.classList.remove('is-open');
+      frame.innerHTML = '';
+      document.body.style.overflow = '';
+      if(lastFocus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('.award-nominate').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var url = a.getAttribute('data-form');
+        if(!url) return;
+        e.preventDefault();
+        open(url, a.getAttribute('data-label') || 'this award', a);
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    backdrop.addEventListener('click', function(e){ if(e.target === backdrop) close(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && backdrop.classList.contains('is-open')) close();
+    });
+  })();
+  </script>
 
 
 <footer>
