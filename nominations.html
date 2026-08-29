@@ -300,8 +300,14 @@
 
   <style>
   /* AWARD ACCORDION — same grammar as the press timeline */
-  .award-intro{ max-width:62ch; }
-  .award-intro p{ font-size:15px; color:var(--ink-muted); line-height:1.6; margin:0 0 16px; }
+  /* First block sits well clear of the rule under the ridgeline. */
+  .award-block:first-child{ margin-top:0; padding-top:52px; }
+  .block-note{ font-size:14px; color:var(--ink-muted); line-height:1.6; margin:-6px 0 0; max-width:60ch; }
+  .nominate-row{ display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap; margin-top:18px; }
+  .nominate-copy{ flex:1 1 420px; min-width:0; }
+  .nominate-copy p{ font-size:15px; color:var(--ink-muted); line-height:1.65; margin:0 0 12px; max-width:60ch; }
+  .nominate-ask{ color:var(--ink) !important; margin-bottom:0 !important; }
+  .wall-link{ margin-top:26px; }
   .section-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-soft); margin:0 0 18px; display:flex; align-items:center; gap:10px; }
   .section-label::before{ content:""; width:22px; height:1px; background:var(--gold); display:inline-block; }
   .award-block{ margin-top:54px; }
@@ -512,13 +518,21 @@
   
   <main class="wrap">
 
-    <div class="award-intro">
-      <p>Two things on this page take nominations. The <strong>DNS Awards</strong> recognise specific achievements across thirteen categories, presented at the Summit. The <strong>Leadership Wall</strong> is a standing roll of leaders and allies advancing neuroinclusion worldwide — a nomination there recognises a body of work rather than a single accomplishment.</p>
-      <p>Open any award to read what it looks for, then nominate directly from there. You may nominate someone else or put yourself forward. Nominations are read and considered by the Summit's organisers; submitting one is not itself a decision.</p>
-    </div>
+    <section class="award-block" aria-labelledby="wall-heading">
+      <p class="section-label" id="wall-heading">The DNS Leadership Wall</p>
+      <div class="nominate-row">
+        <div class="nominate-copy">
+          <p>The Leadership Wall gathers neurodistinct leaders, allies, scientists, and advocates whose work has helped to shape the neurodiversity landscape over the course of the year.</p>
+          <p class="nominate-ask">Know someone whose work belongs on the Wall? Tell us who they are and why.</p>
+        </div>
+        <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSekwjtZQ2zyFNvoiK9rBOqy99uiKYDrUjDHDwh6QrgBzcjYDw/viewform" data-form="https://docs.google.com/forms/d/e/1FAIpQLSekwjtZQ2zyFNvoiK9rBOqy99uiKYDrUjDHDwh6QrgBzcjYDw/viewform?embedded=true" data-label="the Leadership Wall" data-h="700" target="_blank" rel="noopener">Nominate for the Wall →</a>
+      </div>
+      <p class="wall-link"><a class="press-read" href="leadership-wall.html">See this year's wall <span aria-hidden="true">→</span></a></p>
+    </section>
 
     <section class="award-block" aria-labelledby="awards-heading">
       <p class="section-label" id="awards-heading">The 2027 DNS Awards</p>
+      <p class="block-note">The DNS Awards recognize specific achievements across 13 categories over the year. Awards are presented at DNS and at a special awards ceremony in March.</p>
       <div class="award-line">
       <details class="award-item" id="corporate-leaders-impact-award">
         <summary>
@@ -690,18 +704,6 @@
         </div>
       </details>
       </div>
-    </section>
-
-    <section class="award-block" aria-labelledby="wall-heading">
-      <p class="section-label" id="wall-heading">The DNS Leadership Wall</p>
-      <div class="award-intro">
-        <p>The Leadership Wall gathers neurodistinct leaders, allies, scientists, and advocates whose work has shaped the field. It is not tied to a single year or a single achievement, and there is no fixed number of places.</p>
-      </div>
-      <div class="award-detail" style="border-bottom:0; padding-top:14px;">
-        <p style="margin:0;">Know someone whose work belongs on the Wall? Tell us who they are and why.</p>
-        <a class="award-nominate" href="https://docs.google.com/forms/d/e/1FAIpQLSekwjtZQ2zyFNvoiK9rBOqy99uiKYDrUjDHDwh6QrgBzcjYDw/viewform" data-form="https://docs.google.com/forms/d/e/1FAIpQLSekwjtZQ2zyFNvoiK9rBOqy99uiKYDrUjDHDwh6QrgBzcjYDw/viewform?embedded=true" data-label="the Leadership Wall" data-h="700" target="_blank" rel="noopener">Nominate for the Wall →</a>
-      </div>
-      <p style="margin-top:22px;"><a class="press-read" href="leadership-wall.html">See the current wall <span aria-hidden="true">→</span></a></p>
     </section>
 
   </main>
