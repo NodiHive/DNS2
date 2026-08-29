@@ -76,6 +76,51 @@
   .overview-btn svg{ width:16px; height:16px; }
   .overview-btn:hover{ border-color:var(--gold-soft); color:var(--gold-soft); }
 
+
+  /* FOUNDER STUB + MODAL — progressive disclosure, same grammar as the overview card */
+  .founder-row{ display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap; }
+  .founder-portrait{ flex-shrink:0; width:132px; height:132px; border:1px solid var(--rule); overflow:hidden; }
+  .founder-portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .founder-copy{ flex:1 1 380px; min-width:0; }
+  .founder-copy p{ font-size:15px; color:var(--ink-muted); line-height:1.65; margin:0 0 14px; max-width:62ch; }
+  .founder-more{
+    all:unset; cursor:pointer; font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--bg); background:var(--gold-soft);
+    padding:11px 18px; border-radius:2px; display:inline-block; transition:background .2s ease;
+  }
+  .founder-more:hover{ background:var(--gold); }
+  .founder-more:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .fnd-backdrop{
+    position:fixed; inset:0; background:rgba(10,14,28,0.82); backdrop-filter:blur(4px);
+    display:none; align-items:flex-start; justify-content:center; z-index:120;
+    padding:40px 24px; overflow-y:auto;
+  }
+  .fnd-backdrop.is-open{ display:flex; }
+  .fnd-card{
+    background:var(--bg-panel); border:1px solid var(--rule); border-radius:3px;
+    width:100%; max-width:720px; position:relative; margin:auto; padding:34px 38px 38px;
+  }
+  .fnd-card .kicker{ margin-bottom:6px; }
+  .fnd-card h3{ font-family:'Fraunces', serif; font-weight:500; font-size:24px; color:var(--ink); margin:0 0 22px; }
+  .fnd-card h4{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold-soft); margin:26px 0 10px;
+  }
+  .fnd-card p, .fnd-card li{ font-size:14.5px; color:var(--ink-muted); line-height:1.7; margin:0 0 12px; }
+  .fnd-card ul{ margin:0; padding-left:18px; }
+  .fnd-card li{ margin-bottom:7px; }
+  .fnd-close{
+    all:unset; position:absolute; top:16px; right:18px; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; font-size:19px; color:var(--ink-muted); line-height:1; padding:6px;
+  }
+  .fnd-close:hover, .fnd-close:focus-visible{ color:var(--gold-soft); }
+  @media (max-width:600px){
+    .fnd-backdrop{ padding:0; }
+    .fnd-card{ max-width:none; border:0; border-radius:0; min-height:100vh; padding:28px 22px 36px; }
+    .founder-portrait{ width:96px; height:96px; }
+  }
+
   /* OVERVIEW — modal card, matching the Leadership Wall person-modal pattern, styled as a small concept map */
   .overview-overlay{
     position:fixed; inset:0; background:rgba(10,14,28,0.82); backdrop-filter:blur(4px);
@@ -755,6 +800,22 @@
     </div>
   </section>
 
+  <!-- FOUNDER -->
+  <section id="founder">
+    <div class="wrap">
+      <p class="kicker">Our Founder</p>
+      <h2>The Summit is in experienced hands.</h2>
+      <div class="founder-row">
+        <div class="founder-portrait"><img src="maureen-dunne.png" alt="Dr. Maureen Dunne"></div>
+        <div class="founder-copy">
+          <p>Dr. Maureen Dunne is a cognitive scientist and global keynote speaker who has advised Fortune 500 companies, universities, venture funds, and Members of Congress on building cultures where different kinds of minds do their best work. She is the author of <em>The Neurodiversity Edge</em>, a USA Today bestseller recognized with more than twenty awards, with a second book forthcoming from Wiley.</p>
+          <p>She holds a doctorate in cognitive sciences from the University of Oxford, where she studied as a Rhodes Scholar &mdash; the first community college graduate ever named one.</p>
+          <button class="founder-more" id="founderMore" type="button">More about Maureen &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta" id="contact" style="border-bottom:none;">
     <h2>Start the conversation.</h2>
@@ -865,5 +926,60 @@
     });
   })();
 </script>
+
+  <div class="fnd-backdrop" id="fndBackdrop" role="dialog" aria-modal="true" aria-labelledby="fndName">
+    <div class="fnd-card">
+      <button class="fnd-close" id="fndClose" type="button" aria-label="Close">&#215;</button>
+      <p class="kicker">Founder, Davos Neurodiversity Summit</p>
+      <h3 id="fndName">Dr. Maureen Dunne</h3>
+
+      <p>A cognitive scientist, neurodiversity expert, and global keynote speaker with more than two decades of experience helping organizations build cultures where different kinds of minds can do their best work &mdash; approached as a trained researcher who has also lived the experience.</p>
+      <p>She founded the Davos Neurodiversity Summit to bring neurodistinct leaders, innovators, and allies into the conversations that shape the World Economic Forum's annual agenda, and leads the global NODI initiative &mdash; Neurodiversity + Opportunity Drives Innovation &mdash; at Autism Community Ventures.</p>
+
+      <h4>Advisory &amp; institutional work</h4>
+      <ul>
+        <li>Senior advisor to Fortune 500 companies, universities, venture funds, and Members of Congress</li>
+        <li>Neurodiversity expert for the LEGO Foundation's $20 million Play For All accelerator</li>
+        <li>Co-creator of the Future-Ready Leadership executive education program at the Harvard Kennedy School</li>
+        <li>Senior advisor to the LEGO Foundation and Cornell University</li>
+      </ul>
+
+      <h4>Author</h4>
+      <p><em>The Neurodiversity Edge</em> &mdash; USA Today bestseller, recognized with more than twenty awards, among them the Axiom Gold Medal for Independent Thought Leadership, the Goody Business Book Award for Big Ideas, the Literary Titan Gold Book Award, and selection by the getAbstract International Book Awards as one of the top five books for business impact. A second book is forthcoming from Wiley.</p>
+
+      <h4>Recognition</h4>
+      <ul>
+        <li>2025 PBS Difference Makers Award</li>
+        <li>2024 Impact Award, Golden Apple Foundation</li>
+      </ul>
+
+      <h4>Education</h4>
+      <p>The first community college graduate ever named a Rhodes Scholar. Joint BA/MA, University of Chicago (Phi Beta Kappa); MSc, London School of Economics; doctorate in cognitive sciences, University of Oxford; postdoctoral fellowship in cognitive science and technology, Harvard/MIT.</p>
+
+      <h4>Public service</h4>
+      <p>Chair of the Board of Trustees at College of DuPage, one of the largest community colleges in the country; president of the Illinois Community College Trustees Association; member of the national board of the Association of Community College Trustees, representing over 12 million students.</p>
+
+      <h4>Speaking &amp; media</h4>
+      <p>Keynote speaker at Stanford University and the National Science Foundation, and a featured speaker at The Atlantic Festival, where neurodiversity was included in its programming for the first time. Her work has been featured in MIT Sloan Management Review, Fast Company, Bloomberg, Armchair Expert with Dax Shepard, Harper's Bazaar, the Washington Post, NPR, Nasdaq, Inside Higher Ed, and Big Think.</p>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var b=document.getElementById('fndBackdrop'),
+        o=document.getElementById('founderMore'),
+        c=document.getElementById('fndClose');
+    if(!b||!o) return;
+    var last=null;
+    function open(){ last=o; b.classList.add('is-open'); document.body.style.overflow='hidden'; c.focus(); }
+    function close(){ b.classList.remove('is-open'); document.body.style.overflow=''; if(last) last.focus(); }
+    o.addEventListener('click', open);
+    c.addEventListener('click', close);
+    b.addEventListener('click', function(e){ if(e.target===b) close(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key==='Escape' && b.classList.contains('is-open')) close();
+    });
+  })();
+  </script>
 </body>
 </html>
