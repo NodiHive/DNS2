@@ -297,13 +297,21 @@
     margin: 0 0 44px;
     font-weight: 300;
   }
-  /* STAT STRIP — nodes on a line, echoes the Chicago timeline; transparent so the ridgeline stays visible */
-  .stat-strip{ position:relative; z-index:2; margin-top:56px; display:flex; gap:36px; }
-  .stat-strip::before{ content:""; position:absolute; top:5px; left:0; right:0; height:1px; background:rgba(243,239,228,0.18); }
-  .stat-node{ position:relative; flex:1; padding-top:24px; }
-  .stat-node .node-dot{ position:absolute; top:0; left:0; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--gold-soft); }
-  .stat-num{ font-family:'IBM Plex Mono', monospace; font-size:28px; color:var(--gold-soft); line-height:1; margin-bottom:8px; }
-  .stat-label{ font-size:12.5px; color:var(--ink-muted); line-height:1.4; max-width:22ch; }
+  /* WHEN / WHERE — replaces the old projected-attendance strip. */
+  .when-where{
+    display:flex; align-items:stretch; gap:44px;
+    position:relative; z-index:2; margin-top:52px; padding:26px 0 4px;
+    border-top:1px solid var(--rule);
+  }
+  .ww-item{ display:flex; flex-direction:column; }
+  .ww-key{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--ice); margin-bottom:9px;
+  }
+  .ww-val{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(21px,2.8vw,27px); color:var(--gold-soft); line-height:1.1; }
+  .ww-note{ font-size:12.5px; color:var(--ink-muted); margin-top:7px; }
+  .ww-rule{ width:1px; background:var(--rule); align-self:stretch; }
+
 
   /* ---------- SECTION SCAFFOLD ---------- */
   section{ padding: 64px 0; border-bottom: 1px solid var(--rule); }
@@ -439,13 +447,8 @@
   @media (max-width: 720px){
     .tier{ grid-template-columns: 1fr; gap: 10px; }
     .gauge-wrap{ align-items:flex-start; }
-    .stat-strip{ flex-direction:column; gap:0; }
-    .stat-strip::before{ display:none; }
-    .stat-node{ padding-top:0; padding-left:28px; padding-bottom:28px; }
-    .stat-node:last-child{ padding-bottom:0; }
-    .stat-node::before{ content:""; position:absolute; left:5px; top:16px; bottom:-12px; width:1px; background:rgba(243,239,228,0.18); }
-    .stat-node:last-child::before{ display:none; }
-    .stat-node .node-dot{ top:5px; left:0; }
+    .when-where{ flex-direction:column; gap:24px; }
+    .ww-rule{ display:none; }
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -593,22 +596,18 @@
     <p class="hero-sub">DNS 2027 takes place during WEF Annual Meeting week in Davos, followed by a full year of programming, media, and relationship-building. This is an overview of what partnership looks like — and where positions remain open.</p>
   </div>
   <div class="wrap">
-    <div class="stat-strip">
-        <div class="stat-node">
-          <span class="node-dot"></span>
-          <div class="stat-num">~230</div>
-          <div class="stat-label">in-person participants across principal programming</div>
-        </div>
-        <div class="stat-node">
-          <span class="node-dot"></span>
-          <div class="stat-num">~3,000</div>
-          <div class="stat-label">virtual participants joining globally</div>
-        </div>
-        <div class="stat-node">
-          <span class="node-dot"></span>
-          <div class="stat-num">1 wk</div>
-          <div class="stat-label">held during WEF Annual Meeting, January 2027</div>
-        </div>
+    <div class="when-where">
+      <div class="ww-item">
+        <span class="ww-key">When</span>
+        <span class="ww-val">January 2027</span>
+        <span class="ww-note">During WEF Annual Meeting week</span>
+      </div>
+      <span class="ww-rule" aria-hidden="true"></span>
+      <div class="ww-item">
+        <span class="ww-key">Where</span>
+        <span class="ww-val">Davos, Switzerland</span>
+        <span class="ww-note">In person, or virtually from anywhere</span>
+      </div>
     </div>
   </div>
 </header>
@@ -831,24 +830,7 @@
 
 
 <script>
-  (function(){
-    var toggle = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
-    if(!toggle || !links) return;
-    toggle.addEventListener('click', function(){
-      var open = links.classList.toggle('is-open');
-      toggle.classList.toggle('is-active', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        links.classList.remove('is-open');
-        toggle.classList.remove('is-active');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-  // Header shrink-on-scroll
+// Header shrink-on-scroll
   (function(){
     var nav = document.querySelector('nav');
     if(!nav) return;

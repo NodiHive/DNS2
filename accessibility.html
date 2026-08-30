@@ -442,24 +442,7 @@
 
 
 <script>
-  (function(){
-    var toggle = document.getElementById('navToggle');
-    var links = document.getElementById('navLinks');
-    if(!toggle || !links) return;
-    toggle.addEventListener('click', function(){
-      var open = links.classList.toggle('is-open');
-      toggle.classList.toggle('is-active', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        links.classList.remove('is-open');
-        toggle.classList.remove('is-active');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-  // Header shrink-on-scroll
+// Header shrink-on-scroll
   (function(){
     var nav = document.querySelector('nav');
     if(!nav) return;
