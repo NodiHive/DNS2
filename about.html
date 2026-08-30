@@ -267,7 +267,46 @@
     .cta-sparkle{ display:none !important; }
   }
 
-</style>
+
+  /* GALLERY — thumbs in the grid, full image only on demand. */
+  .gal-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:26px; }
+  .gal-tile{
+    all:unset; cursor:pointer; display:block; position:relative; overflow:hidden;
+    aspect-ratio:4/3; border:1px solid var(--rule); background:var(--bg-panel);
+  }
+  .gal-tile img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    opacity:0.86; transition:opacity .25s ease, transform .5s ease;
+  }
+  .gal-tile:hover img, .gal-tile:focus-visible img{ opacity:1; transform:scale(1.03); }
+  .gal-tile:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  .lb-backdrop{
+    position:fixed; inset:0; background:rgba(10,14,28,0.92); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:130; padding:36px 24px;
+  }
+  .lb-backdrop.is-open{ display:flex; }
+  .lb-figure{ max-width:1100px; width:100%; text-align:center; }
+  .lb-figure img{ max-width:100%; max-height:78vh; display:block; margin:0 auto; border:1px solid var(--rule); }
+  .lb-count{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; color:var(--ink-muted); margin-top:14px; }
+  .lb-btn{
+    all:unset; position:absolute; cursor:pointer; color:var(--ink-muted); padding:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:22px; line-height:1;
+  }
+  .lb-btn:hover, .lb-btn:focus-visible{ color:var(--gold-soft); }
+  .lb-prev{ left:10px; top:50%; transform:translateY(-50%); }
+  .lb-next{ right:10px; top:50%; transform:translateY(-50%); }
+  .lb-close{ top:14px; right:16px; font-size:20px; }
+  @media (max-width:900px){ .gal-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:600px){
+    .gal-grid{ grid-template-columns:repeat(2,1fr); gap:8px; }
+    .lb-backdrop{ padding:16px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .gal-tile img{ transition:none; }
+    .gal-tile:hover img, .gal-tile:focus-visible img{ transform:none; }
+  }
+  </style>
 </head>
 <body>
 
@@ -419,11 +458,54 @@
     </div>
   </section>
 
+  <section id="gallery">
+    <p class="kicker">The Story So Far</p>
+    <h2>Built by a community.</h2>
+    <div class="gal-grid">
+      <button class="gal-tile" type="button" data-full="about-gallery-01-origin-main.jpg" data-alt="Maureen kicks off DNS ’24 by video from a snowy chalet balcony in Davos.">
+        <img src="about-gallery-01-origin-thumb.jpg" alt="Maureen kicks off DNS ’24 by video from a snowy chalet balcony in Davos." decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-02-message-main.jpg" data-alt="Maureen holds a handwritten sign reading &quot;Neurodiversity is welcome&quot; in the Swiss Alps.">
+        <img src="about-gallery-02-message-thumb.jpg" alt="Maureen holds a handwritten sign reading &quot;Neurodiversity is welcome&quot; in the Swiss Alps." decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-03-helper-main.jpg" data-alt="Early days at DNS ’24 on a Davos street.">
+        <img src="about-gallery-03-helper-thumb.jpg" alt="Early days at DNS ’24 on a Davos street." decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-04-meeting-main.jpg" data-alt="Planning meeting.">
+        <img src="about-gallery-04-meeting-thumb.jpg" alt="Planning meeting." decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-05-workshop-main.jpg" data-alt="Workshop session at a mountaintop location during DNS ’26.">
+        <img src="about-gallery-05-workshop-thumb.jpg" alt="Workshop session at a mountaintop location during DNS ’26." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-06-bytrain-main.jpg" data-alt="Final good-byes before an alpine train journey at Davos train station.">
+        <img src="about-gallery-06-bytrain-thumb.jpg" alt="Final good-byes before an alpine train journey at Davos train station." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-07-group-main.jpg" data-alt="The DNS community celebrates together at DNS ’25.">
+        <img src="about-gallery-07-group-thumb.jpg" alt="The DNS community celebrates together at DNS ’25." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-08-discussion-main.jpg" data-alt="Rich discussion at DNS ’25.">
+        <img src="about-gallery-08-discussion-thumb.jpg" alt="Rich discussion at DNS ’25." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-09-panel-main.jpg" data-alt="A DNS panel discussion on stage, with remote panelists joining by video.">
+        <img src="about-gallery-09-panel-thumb.jpg" alt="A DNS panel discussion on stage, with remote panelists joining by video." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-10-fireside-main.jpg" data-alt="Fireside chat with the Everway CEO at DNS ’26.">
+        <img src="about-gallery-10-fireside-thumb.jpg" alt="Fireside chat with the Everway CEO at DNS ’26." loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-11-menu-main.jpg" data-alt="A printed program for the Davos Neurodiversity Summit 2026, featuring Ernst Ludwig Kirchner's &quot;Winter in Davos.&quot;">
+        <img src="about-gallery-11-menu-thumb.jpg" alt="A printed program for the Davos Neurodiversity Summit 2026, featuring Ernst Ludwig Kirchner's &quot;Winter in Davos.&quot;" loading="lazy" decoding="async">
+      </button>
+      <button class="gal-tile" type="button" data-full="about-gallery-12-shaw-main.jpg" data-alt="Warm moment between colleagues over dinner.">
+        <img src="about-gallery-12-shaw-thumb.jpg" alt="Warm moment between colleagues over dinner." loading="lazy" decoding="async">
+      </button>
+    </div>
+  </section>
+
   <section>
     <p class="kicker">Founder</p>
     <h2>Founded by Dr. Maureen Dunne</h2>
     <div class="founder-block">
-      <div class="founder-photo"><img src="maureen-dunne.png" alt="Dr. Maureen Dunne"></div>
+      <div class="founder-photo"><img src="maureen-about-founder-3x4.jpg" alt="Dr. Maureen Dunne, founder of the Davos Neurodiversity Summit"></div>
       <div>
         <p class="founder-name">Dr. Maureen Dunne</p>
         <p class="founder-title">Founder, Davos Neurodiversity Summit</p>
@@ -546,5 +628,59 @@
     });
   })();
 </script>
+
+  <div class="lb-backdrop" id="lbBackdrop" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lb-btn lb-close" id="lbClose" type="button" aria-label="Close">&#215;</button>
+    <button class="lb-btn lb-prev" id="lbPrev" type="button" aria-label="Previous photo">&#8249;</button>
+    <button class="lb-btn lb-next" id="lbNext" type="button" aria-label="Next photo">&#8250;</button>
+    <figure class="lb-figure">
+      <img id="lbImg" src="" alt="">
+      <figcaption class="lb-count" id="lbCount"></figcaption>
+    </figure>
+  </div>
+
+  <script>
+  /* Gallery lightbox. Grid shows thumbnails; the full-size file is fetched
+     only when a tile is opened, so the page costs twelve thumbs, not twelve
+     full images. Arrow keys and Escape work; focus returns to the tile. */
+  (function(){
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.gal-tile'));
+    var b = document.getElementById('lbBackdrop');
+    if(!tiles.length || !b) return;
+    var img = document.getElementById('lbImg'),
+        cnt = document.getElementById('lbCount'),
+        i = 0, last = null;
+
+    function show(n){
+      i = (n + tiles.length) % tiles.length;
+      img.setAttribute('src', tiles[i].getAttribute('data-full'));
+      img.setAttribute('alt', tiles[i].getAttribute('data-alt'));
+      cnt.textContent = (i + 1) + ' / ' + tiles.length;
+    }
+    function open(n, el){
+      last = el; show(n);
+      b.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('lbClose').focus();
+    }
+    function close(){
+      b.classList.remove('is-open');
+      img.setAttribute('src','');
+      document.body.style.overflow = '';
+      if(last) last.focus();
+    }
+    tiles.forEach(function(t, n){ t.addEventListener('click', function(){ open(n, t); }); });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function(){ show(i - 1); });
+    document.getElementById('lbNext').addEventListener('click', function(){ show(i + 1); });
+    b.addEventListener('click', function(e){ if(e.target === b) close(); });
+    document.addEventListener('keydown', function(e){
+      if(!b.classList.contains('is-open')) return;
+      if(e.key === 'Escape') close();
+      else if(e.key === 'ArrowLeft') show(i - 1);
+      else if(e.key === 'ArrowRight') show(i + 1);
+    });
+  })();
+  </script>
 </body>
 </html>
