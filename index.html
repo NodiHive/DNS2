@@ -553,6 +553,10 @@
           <img class="hero-slide" data-src="hero-03-workshop.jpg" alt="Small-group workshop session in a wood-panelled Alpine cabin, participants reviewing an inclusive design canvas" decoding="async">
           <img class="hero-slide" data-src="hero-04-speaker.jpg" alt="Speaker addressing the audience at DNS, holding a microphone in front of a Davos Neurodiversity Summit backdrop" decoding="async">
           <img class="hero-slide" data-src="hero-01-balcony-view.jpg" alt="View from a Davos hotel balcony over a wooden railing toward a church spire and snow-capped mountains" decoding="async">
+          <img class="hero-slide" data-src="hero-06-carriage.jpg" alt="A horse-drawn carriage traveling through the snow toward the chalet workshop venue" decoding="async">
+          <img class="hero-slide" data-src="hero-07-roomcontext.jpg" alt="A speaker addressing the full dinner room at DNS, with Davos Neurodiversity Summit signage behind" decoding="async">
+          <img class="hero-slide" data-src="hero-08-chalet.jpg" alt="Maureen and attendees in discussion inside the Alps chalet workshop, snow visible through the window" decoding="async">
+          <img class="hero-slide" data-src="hero-09-remotepanel.jpg" alt="A hybrid panel — remote panelists on screen, with a moderator seated in the room" decoding="async">
         </div>
         <button class="hero-pause" id="heroPause" type="button" aria-label="Pause image rotation">&#10073;&#10073;</button>
         <span class="cap">Davos, Switzerland</span>
@@ -781,7 +785,7 @@
   if(document.readyState === 'complete') loadRest();
   else window.addEventListener('load', loadRest);
 
-  var idx = 0, timer = null, paused = false, INTERVAL = 6500;
+  var idx = 0, timer = null, paused = false, INTERVAL = 4000;
   function step(){
     slides[idx].classList.remove('is-active');
     idx = (idx + 1) % slides.length;
