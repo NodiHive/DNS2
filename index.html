@@ -180,6 +180,7 @@
     .nav-links{ margin-left:0 !important; }
     .nav-toggle{ display:flex; }
     .nav-row-top{ display:none; }
+    .hero-join{ display:block; margin:0 0 22px; }
     .nav-row-main{ gap:8px; }
     .wordmark-mobile{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12.5px; letter-spacing:0; }
     .nav-cta{ flex-shrink:0; padding:8px 11px; font-size:10px; }
@@ -209,6 +210,29 @@
 
 
   /* HERO */
+  /* MOBILE-ONLY "JOIN US" CTA.
+     The header version lives in .nav-row-top, which is display:none below
+     760px — that hiding is the fix for the Register-button overflow bug and
+     must not be reversed. So mobile gets its own copy inside the hero instead,
+     and the nav is never touched. Desktop never sees this block. */
+  .hero-join{ display:none; }
+  .hero-join-wrap{ position:relative; display:inline-block; }
+  .hero-join-line{
+    font-family:'IBM Plex Mono', monospace; font-size:16px; font-weight:500;
+    letter-spacing:0.06em; text-transform:uppercase; margin:0; color:var(--gold-soft);
+    background:linear-gradient(100deg, var(--gold-soft) 0%, var(--gold-soft) 18%, #ffffff 50%, var(--gold-soft) 82%, var(--gold-soft) 100%);
+    background-size:250% 100%; background-position:-150% 0;
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+    display:inline-block;
+    animation:cta-shine 2.6s ease-in-out 0.6s 1 forwards, cta-glow 2.6s ease-in-out 0.6s 1 forwards;
+  }
+  .hero-join-sub{ font-size:13px; color:var(--ink-muted); margin:4px 0 0; }
+  .hero-join-sparkle{
+    position:absolute; opacity:0; transform:scale(0) rotate(0deg); pointer-events:none;
+    animation:cta-sparkle-pop 0.8s ease-out 1;
+    filter:drop-shadow(0 0 3px rgba(255,255,255,0.8));
+  }
+
   .hero{ position:relative; padding:90px 0 0; overflow:hidden; border-bottom:1px solid var(--rule); }
   .hero .ridgeline{ position:absolute; left:0; right:0; bottom:0; width:100%; height:260px; display:block; opacity:0.5; pointer-events:none; z-index:1; }
   .hero-grid{
@@ -541,6 +565,16 @@
         <p class="eyebrow">Hosted by NODI · Neurodiversity + Opportunity Drives Innovation</p>
         <h1>Where neurodistinct <em>leadership</em> meets the world stage.</h1>
         <p class="hero-sub">The Davos Neurodiversity Summit gathers neurodistinct leaders, allies, investors, and innovators during WEF Annual Meeting week to shape inclusive global progress — in person in Davos, or virtually from anywhere.</p>
+        <div class="hero-join" aria-hidden="false">
+          <div class="hero-join-wrap">
+            <p class="hero-join-line">Join us at DNS 2027</p>
+            <svg class="hero-join-sparkle" style="left:6%; top:-9px; width:11px; height:11px; animation-delay:0.55s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+            <svg class="hero-join-sparkle" style="left:34%; top:18px; width:9px; height:9px; animation-delay:0.85s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+            <svg class="hero-join-sparkle" style="left:62%; top:-11px; width:13px; height:13px; animation-delay:1.15s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+            <svg class="hero-join-sparkle" style="left:86%; top:14px; width:10px; height:10px; animation-delay:1.4s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+          </div>
+          <p class="hero-join-sub">Virtually, or in the Alps.</p>
+        </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#register">Register for DNS 2027</a>
           <a class="btn btn-ghost" href="sponsorship.html">Sponsorship &amp; Speaking</a>
