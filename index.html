@@ -209,25 +209,33 @@
 
 
   /* HERO */
-  /* MOBILE-ONLY "JOIN US" CTA.
+  /* MOBILE-ONLY "JOIN US" CTA — a tappable band at the very top of the hero.
      The header version lives in .nav-row-top, which is display:none below
-     760px — that hiding is the fix for the Register-button overflow bug and
-     must not be reversed. So mobile gets its own copy inside the hero instead,
-     and the nav is never touched. Desktop never sees this block. */
-  .hero-join{ display:none; }
-  .hero-join-wrap{ position:relative; display:inline-block; }
+     760px; that hiding is the fix for the Register-button overflow bug and
+     must not be reversed. Mobile gets this instead, and the nav is untouched.
+     The display:block rule lives in the LATER max-width:760px block — the base
+     rule below sits between the two media queries, and with equal specificity
+     source order decides. */
+  .hero-join{
+    display:none; position:relative; text-decoration:none;
+    padding:16px 18px; margin:0 0 20px; border-radius:3px;
+    background:var(--bg-panel); border:1px solid var(--gold);
+    text-align:center; overflow:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .hero-join:active{ background:#1C2749; }
+  .hero-join:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
   .hero-join-line{
-    font-family:'IBM Plex Mono', monospace; font-size:16px; font-weight:500;
-    letter-spacing:0.06em; text-transform:uppercase; margin:0; color:var(--gold-soft);
+    font-family:'IBM Plex Mono', monospace; font-size:clamp(15px,4.6vw,19px); font-weight:500;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft);
     background:linear-gradient(100deg, var(--gold-soft) 0%, var(--gold-soft) 18%, #ffffff 50%, var(--gold-soft) 82%, var(--gold-soft) 100%);
     background-size:250% 100%; background-position:-150% 0;
     -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
-    display:inline-block;
+    display:inline-block; position:relative; z-index:2;
     animation:cta-shine 2.6s ease-in-out 0.6s 1 forwards, cta-glow 2.6s ease-in-out 0.6s 1 forwards;
   }
-  .hero-join-sub{ font-size:13px; color:var(--ink-muted); margin:4px 0 0; }
   .hero-join-sparkle{
-    position:absolute; opacity:0; transform:scale(0) rotate(0deg); pointer-events:none;
+    position:absolute; opacity:0; transform:scale(0) rotate(0deg); pointer-events:none; z-index:1;
     animation:cta-sparkle-pop 0.8s ease-out 1;
     filter:drop-shadow(0 0 3px rgba(255,255,255,0.8));
   }
@@ -419,7 +427,7 @@
     /* Must live in THIS media block, not the earlier one: the base
        .hero-join{display:none} sits between them, and with equal
        specificity the later rule wins. */
-    .hero-join{ display:block; margin:0 0 22px; }
+    .hero-join{ display:block; }
     .event-card{ grid-template-columns:1fr; }
     .event-schedule{ border-left:none; padding-left:0; border-top:1px solid var(--rule); padding-top:20px; }
     .when-where{ flex-direction:column; gap:24px; }
@@ -431,8 +439,8 @@
   @media (prefers-reduced-motion: reduce){ *{ transition-duration:0.01ms !important; animation-duration:0.01ms !important; } }
 
   @media (prefers-reduced-motion: reduce){
-    .cta-eyebrow{ animation:none !important; background:none !important; -webkit-text-fill-color:var(--gold-soft) !important; color:var(--gold-soft) !important; transform:none !important; filter:none !important; }
-    .cta-sparkle{ display:none !important; }
+    .cta-eyebrow, .hero-join-line{ animation:none !important; background:none !important; -webkit-text-fill-color:var(--gold-soft) !important; color:var(--gold-soft) !important; transform:none !important; filter:none !important; }
+    .cta-sparkle, .hero-join-sparkle{ display:none !important; }
   }
 
 </style>
@@ -563,21 +571,18 @@
     <polyline points="0,240 0,185 130,130 250,165 360,110 460,150 590,95 700,140 820,90 930,135 1080,105 1080,240" fill="#1C2749" opacity="0.7"/>
   </svg>
   <div class="wrap">
+    <a class="hero-join" href="#register">
+      <span class="hero-join-line">Join us at DNS 2027</span>
+      <svg class="hero-join-sparkle" style="left:7%; top:4px; width:11px; height:11px; animation-delay:0.55s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+      <svg class="hero-join-sparkle" style="left:31%; bottom:6px; width:9px; height:9px; animation-delay:0.85s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+      <svg class="hero-join-sparkle" style="left:58%; top:6px; width:13px; height:13px; animation-delay:1.15s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+      <svg class="hero-join-sparkle" style="left:81%; bottom:8px; width:10px; height:10px; animation-delay:1.4s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
+    </a>
     <div class="hero-grid">
       <div class="hero-text">
         <p class="eyebrow">Hosted by NODI · Neurodiversity + Opportunity Drives Innovation</p>
         <h1>Where neurodistinct <em>leadership</em> meets the world stage.</h1>
         <p class="hero-sub">The Davos Neurodiversity Summit gathers neurodistinct leaders, allies, investors, and innovators during WEF Annual Meeting week to shape inclusive global progress — in person in Davos, or virtually from anywhere.</p>
-        <div class="hero-join" aria-hidden="false">
-          <div class="hero-join-wrap">
-            <p class="hero-join-line">Join us at DNS 2027</p>
-            <svg class="hero-join-sparkle" style="left:6%; top:-9px; width:11px; height:11px; animation-delay:0.55s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
-            <svg class="hero-join-sparkle" style="left:34%; top:18px; width:9px; height:9px; animation-delay:0.85s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
-            <svg class="hero-join-sparkle" style="left:62%; top:-11px; width:13px; height:13px; animation-delay:1.15s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
-            <svg class="hero-join-sparkle" style="left:86%; top:14px; width:10px; height:10px; animation-delay:1.4s;" viewBox="0 0 12 12" fill="#fff"><path d="M6 0 L7.2 4.8 L12 6 L7.2 7.2 L6 12 L4.8 7.2 L0 6 L4.8 4.8 Z"/></svg>
-          </div>
-          <p class="hero-join-sub">Virtually, or in the Alps.</p>
-        </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#register">Register for DNS 2027</a>
           <a class="btn btn-ghost" href="sponsorship.html">Sponsorship &amp; Speaking</a>
