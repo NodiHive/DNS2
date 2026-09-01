@@ -427,7 +427,11 @@
     /* Must live in THIS media block, not the earlier one: the base
        .hero-join{display:none} sits between them, and with equal
        specificity the later rule wins. */
-    .hero-join{ display:block; }
+    /* The 90px hero top padding is sized for the desktop nav's tall top row,
+       which is hidden below 760px — so on phones it is padding for something
+       that is not there. Trim it and let the CTA band sit near the nav. */
+    .hero{ padding-top:26px; }
+    .hero-join{ display:block; margin-bottom:16px; padding:14px 16px; }
     .event-card{ grid-template-columns:1fr; }
     .event-schedule{ border-left:none; padding-left:0; border-top:1px solid var(--rule); padding-top:20px; }
     .when-where{ flex-direction:column; gap:24px; }
