@@ -180,7 +180,6 @@
     .nav-links{ margin-left:0 !important; }
     .nav-toggle{ display:flex; }
     .nav-row-top{ display:none; }
-    .hero-join{ display:block; margin:0 0 22px; }
     .nav-row-main{ gap:8px; }
     .wordmark-mobile{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:12.5px; letter-spacing:0; }
     .nav-cta{ flex-shrink:0; padding:8px 11px; font-size:10px; }
@@ -417,6 +416,10 @@
     .hero-grid{ grid-template-columns:1fr; }
     .hero-image{ order:-1; }
     .hero-text{ padding-bottom:32px; }
+    /* Must live in THIS media block, not the earlier one: the base
+       .hero-join{display:none} sits between them, and with equal
+       specificity the later rule wins. */
+    .hero-join{ display:block; margin:0 0 22px; }
     .event-card{ grid-template-columns:1fr; }
     .event-schedule{ border-left:none; padding-left:0; border-top:1px solid var(--rule); padding-top:20px; }
     .when-where{ flex-direction:column; gap:24px; }
