@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- STAGING ONLY: remove this line before copying to DNS2 --><meta name="robots" content="noindex, nofollow">
 <title>Agenda at a Glance — Davos Neurodiversity Summit</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -256,29 +255,6 @@
   }
   .tag.gold{ color:var(--gold-soft); border-color:rgba(201,164,92,0.4); }
 
-  /* EXPANDABLE SESSIONS — tap a session to read its full description */
-  details.agenda-item{ display:block; padding:0; }
-  details.agenda-item > summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:84px 1fr; gap:18px; padding:14px 0; }
-  details.agenda-item > summary::-webkit-details-marker{ display:none; }
-  details.agenda-item > summary:focus-visible{ outline:2px solid var(--gold); outline-offset:4px; border-radius:2px; }
-  details.agenda-item > summary:hover .a-title{ color:var(--gold-soft); }
-  .a-sub{ font-family:'Fraunces', serif; font-style:italic; font-weight:400; font-size:15px; color:var(--ink); margin:2px 0 6px; max-width:52ch; line-height:1.35; }
-  .a-meta{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ice); margin:0 0 8px; }
-  .a-toggle{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--gold-soft); display:inline-flex; align-items:center; gap:6px; }
-  .a-toggle .plus{ display:inline-block; transition:transform 0.25s ease; }
-  details.agenda-item[open] .a-toggle .plus{ transform:rotate(45deg); }
-  .a-toggle .when-open{ display:none; }
-  details.agenda-item[open] .a-toggle .when-open{ display:inline; }
-  details.agenda-item[open] .a-toggle .when-closed{ display:none; }
-  .a-body{ margin:0 0 18px 102px; padding:4px 0 4px 18px; border-left:1px solid rgba(231,206,151,0.35); max-width:64ch; }
-  .a-body p{ font-size:14px; color:var(--ink-muted); line-height:1.65; margin:0 0 14px; }
-  .a-body p:last-child{ margin-bottom:0; }
-  .a-body p.lead{ color:var(--ink); }
-  @media (max-width:820px){
-    details.agenda-item > summary{ grid-template-columns:64px 1fr; }
-    .a-body{ margin-left:0; padding-left:16px; }
-  }
-
   footer{ padding:40px 0; border-top:1px solid var(--rule); }
   .footer-inner{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px; align-items:center; max-width:1080px; margin:0 auto; padding:0 28px; }
   .footer-inner p{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-muted); margin:0; }
@@ -300,8 +276,6 @@
     .cta-sparkle{ display:none !important; }
   }
 
-  @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
-  @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
 </style>
 </head>
 <body>
@@ -352,13 +326,7 @@
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="agenda.html" class="current">Agenda</a>
-        <div class="nav-drop" id="dropNew">
-          <button class="drop-toggle">What's New <span class="caret">▾</span></button>
-          <div class="drop-panel">
-            <a href="one-summit.html">The Summit, Reimagined</a>
-            <a href="whats-new.html">Prize &amp; Programs</a>
-          </div>
-        </div>
+        <a href="whats-new.html">What's New</a>
 
         <div class="nav-drop" id="dropHonors">
           <button class="drop-toggle">Honors <span class="caret">▾</span></button>
@@ -403,13 +371,7 @@
     <div class="cm-grid">
 
       <a class="cm-leaf" href="agenda.html"><span class="cm-dot"></span>Agenda</a>
-      <div class="cm-cluster">
-        <div class="cm-cluster-label"><span class="cm-dot-lg"></span>What's New</div>
-        <div class="cm-children">
-          <a href="one-summit.html">The Summit, Reimagined</a>
-          <a href="whats-new.html">Prize &amp; Programs</a>
-        </div>
-      </div>
+      <a class="cm-leaf" href="whats-new.html"><span class="cm-dot"></span>What's New</a>
 
       <div class="cm-cluster">
         <div class="cm-cluster-label"><span class="cm-dot-lg"></span>Honors</div>
@@ -499,23 +461,7 @@
             <h2>The Main Day</h2>
             <p>The Summit&rsquo;s central day: fireside conversations, six thematic panels either side of dinner, and the awards. The running order below is settled in shape; exact times are still being confirmed.</p>
           </div>
-          <details class="agenda-item">
-            <summary>
-              <span class="time">01</span>
-              <div>
-                <div class="a-title-row"><span class="a-title">One Summit, Many Rooms</span><span class="tag">Opening</span></div>
-                <p class="a-sub">Human Ingenuity and the Future of Leadership in the Age of AI</p>
-                <p class="a-meta">Opening Address · Dr. Maureen Dunne</p>
-                <span class="a-toggle"><span class="plus">+</span><span class="when-closed">Read more</span><span class="when-open">Close</span></span>
-              </div>
-            </summary>
-            <div class="a-body">
-              <p class="lead">What if the perspective your organization most needs belongs to someone it has never learned to hear?</p>
-              <p>As leaders invest in artificial intelligence, an equally consequential question demands attention: are we creating the conditions for human intelligence to flourish? Drawing on her latest research into cognitive diversity in the age of AI, Dr. Maureen Dunne opens the Summit with a challenge to rethink cognitive infrastructure&mdash;the environments, relationships, and technologies that shape whose abilities are recognized, whose ideas influence decisions, and what we learn from one another. She explores how different minds and AI can complement one another, and why judgment, empathy, imagination, and learning across generations belong at the heart of leadership.</p>
-              <p>One Summit, Many Rooms brings this vision to life. Conceived as a living laboratory, the Davos Neurodiversity Summit invites people to experience Davos on their own terms, with personalized technology, supports, and adaptive environments&mdash;and the freedom to come and go, pause, and participate in ways that suit them. Through small experiments in collaboration, leaders, researchers, educators, and innovators across neurotypes and generations will explore new possibilities for learning and work. Introducing the Summit&rsquo;s book project, Dunne asks how what we discover together can become part of our institutions&mdash;and part of what we pass on.</p>
-              <p>We need all kinds of minds. The responsibility of leadership is to ensure that what they see, know, and imagine has a chance to shape our shared future.</p>
-            </div>
-          </details>
+          <div class="agenda-item"><span class="time">01</span><div><div class="a-title-row"><span class="a-title">Arrival &amp; Opening Remarks</span><span class="tag">Opening</span></div></div></div>
           <div class="agenda-item"><span class="time">02</span><div><div class="a-title-row"><span class="a-title">Fireside Chats</span><span class="tag gold">Fireside</span></div><p class="a-desc">Conversations with prominent executives who are neurodistinct themselves, or who are making strong strides for the movement.</p></div></div>
           <div class="agenda-item"><span class="time">03</span><div><div class="a-title-row"><span class="a-title">Panels &mdash; First Three Tracks</span><span class="tag">Panel</span></div><p class="a-desc">Covering three of the six Innovation Tracks.</p></div></div>
           <div class="agenda-item"><span class="time">04</span><div><div class="a-title-row"><span class="a-title">Dinner &amp; Drinks</span><span class="tag">Dinner</span></div><p class="a-desc">The pivot point of the evening.</p></div></div>
