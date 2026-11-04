@@ -7,10 +7,10 @@ window.DNS_SPEAKERS = {
   "img": "spk-maureen-dunne.jpg",
   "sessions": [
    {
-    "title": "One Summit, Many Rooms",
+    "title": "One Conversation. Every Room.™",
     "day": "Day 2",
     "when": "Tue · Jan 19",
-    "id": "s-one-summit-many-rooms",
+    "id": "s-one-conversation-every-room",
     "role": ""
    },
    {

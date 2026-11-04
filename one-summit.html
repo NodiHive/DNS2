@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Summit, Many Rooms — Davos Neurodiversity Summit</title>
+<title>One Conversation. Every Room.™ — Davos Neurodiversity Summit</title>
 <meta name="description" content="DNS 2027 carries one live conversation into every room, so each guest chooses how to take part and no one misses anything by choosing. A Davos gathering designed the way its subject says organizations should be.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -259,7 +259,7 @@
     .cta-sparkle{ display:none !important; }
   }
 
-  /* ===== ONE SUMMIT, MANY ROOMS — page-specific ===== */
+  /* ===== ONE CONVERSATION. EVERY ROOM. — page-specific ===== */
   .lede-wide{ font-size:15.5px; color:var(--ink-muted); margin:0 0 36px; max-width:66ch; }
 
   /* CONTRAST — two ways to hold a summit */
@@ -356,6 +356,23 @@
   @media (max-width:520px){ .cta-section .btn-secondary{ margin:12px 0 0; } }
   @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
   @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
+
+  /* FRAMEWORK TITLE, AUTHORSHIP + RIGHTS */
+  h1 .tm{ font-family:'IBM Plex Mono', monospace; font-size:0.28em; font-weight:400; vertical-align:super; margin-left:0.12em; color:var(--gold-soft); letter-spacing:0; font-style:normal; }
+  .fw-sub{ font-family:'Fraunces', serif; font-weight:400; font-size:clamp(19px,2.3vw,24px); color:var(--gold-soft); margin:0 0 8px; line-height:1.3; position:relative; z-index:2; }
+  .fw-tag{ font-style:italic; font-size:15.5px; color:var(--ink-muted); margin:0 0 24px; max-width:60ch; position:relative; z-index:2; }
+  .fw-byline{ display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; margin:0 0 30px; padding:12px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); max-width:640px; position:relative; z-index:2;
+    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ice); }
+  .fw-byline strong{ font-weight:500; color:var(--ink); letter-spacing:0.06em; }
+  .fw-byline .sep{ width:4px; height:4px; background:var(--gold); transform:rotate(45deg); display:inline-block; }
+  @media (max-width:560px){ .fw-byline{ flex-direction:column; align-items:flex-start; } .fw-byline .sep{ display:none; } }
+  .rights{ padding:46px 0 54px; }
+  .rights .r-lead{ font-family:'Fraunces', serif; font-size:17px; color:var(--ink); margin:0 0 14px; line-height:1.5; max-width:62ch; }
+  .rights .r-copy{ font-size:13px; color:var(--ink-muted); margin:0 0 22px; line-height:1.6; max-width:72ch; }
+  .rights .r-perm{ font-size:13.5px; color:var(--ink-muted); margin:0; }
+  .rights .r-perm span{ display:block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ice); margin-bottom:6px; }
+  .rights .r-perm a{ color:var(--gold-soft); text-decoration:none; border-bottom:1px solid rgba(231,206,151,0.35); }
+  .rights .r-perm a:hover{ border-color:var(--gold-soft); }
 </style>
 </head>
 <body>
@@ -496,7 +513,10 @@
   </svg>
   <div class="wrap">
     <p class="eyebrow">DNS 2027 · A Davos gathering, reimagined</p>
-    <h1>One conversation. <em>Every</em> room.</h1>
+    <h1>One Conversation. <em>Every</em> Room.<span class="tm" aria-label="trademark">™</span></h1>
+    <p class="fw-sub">Designing the Conditions for Collective Intelligence</p>
+    <p class="fw-tag">A research-informed framework for accessible innovation, leadership, and participation</p>
+    <p class="fw-byline"><strong>Maureen N. Dunne, Ph.D.</strong><span class="sep" aria-hidden="true"></span><span>Research and development · 2023–2026</span></p>
     <p class="page-sub">Most summits ask every guest to take in the program the same way: one room, one stage, sit still. DNS 2027 carries one live conversation into every room, so each guest chooses how to take part, moment by moment, and no one misses anything by choosing.</p>
   </div>
 </header>
@@ -682,11 +702,19 @@
     </div>
   </section>
 
+  <section class="rights">
+    <div class="wrap-narrow">
+      <p class="r-lead">Developed through years of research by Dr. Maureen Dunne and brought to life through the Davos Neurodiversity Summit 2027.</p>
+      <p class="r-copy">One Conversation. Every Room.™ © 2026 Maureen N. Dunne. All rights reserved. Copyright applies to the original text, diagrams, illustrations, and other protectable expression presented here.</p>
+      <p class="r-perm"><span>Permissions &amp; collaboration</span><a href="mailto:contact@DavosNeurodiversitySummit.com?subject=One%20Conversation.%20Every%20Room.%20%E2%80%94%20Permissions">contact@DavosNeurodiversitySummit.com</a></p>
+    </div>
+  </section>
+
 </main>
 
 <footer>
   <div class="footer-inner">
-    <p>© 2027 DAVOS NEURODIVERSITY SUMMIT · HOSTED BY NODI</p>
+    <p>© 2026 DAVOS NEURODIVERSITY SUMMIT · HOSTED BY NODI</p>
     <div class="footer-links">
       <a href="press.html">Press</a>
       <a href="index.html">Home</a>
