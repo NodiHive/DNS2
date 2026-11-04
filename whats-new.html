@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What's New for 2027 — Davos Neurodiversity Summit</title>
+<title>Prize &amp; Programs — Davos Neurodiversity Summit</title>
 <meta name="description" content="DNS 2027 grows into a year-round innovation platform — a new Neurodiversity Innovation Prize, six Innovation Tracks, the Inclusive Davos Experience app, and programming that now runs year-round.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -328,6 +328,8 @@
     .cta-eyebrow{ animation:none !important; background:none !important; -webkit-text-fill-color:var(--gold-soft) !important; color:var(--gold-soft) !important; transform:none !important; filter:none !important; }
     .cta-sparkle{ display:none !important; }
   }
+  @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
+  @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
 </style>
 </head>
 <body>
@@ -378,7 +380,13 @@
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="agenda.html">Agenda</a>
-        <a href="whats-new.html" class="current">What's New</a>
+        <div class="nav-drop" id="dropNew">
+          <button class="drop-toggle">What's New <span class="caret">▾</span></button>
+          <div class="drop-panel">
+            <a href="one-summit.html">The Summit, Reimagined</a>
+            <a href="whats-new.html">Prize &amp; Programs</a>
+          </div>
+        </div>
 
         <div class="nav-drop" id="dropHonors">
           <button class="drop-toggle">Honors <span class="caret">▾</span></button>
@@ -423,7 +431,13 @@
     <div class="cm-grid">
 
       <a class="cm-leaf" href="agenda.html"><span class="cm-dot"></span>Agenda</a>
-      <a class="cm-leaf" href="whats-new.html"><span class="cm-dot"></span>What's New</a>
+      <div class="cm-cluster">
+        <div class="cm-cluster-label"><span class="cm-dot-lg"></span>What's New</div>
+        <div class="cm-children">
+          <a href="one-summit.html">The Summit, Reimagined</a>
+          <a href="whats-new.html">Prize &amp; Programs</a>
+        </div>
+      </div>
 
       <div class="cm-cluster">
         <div class="cm-cluster-label"><span class="cm-dot-lg"></span>Honors</div>
@@ -714,7 +728,7 @@
     { name:'Real-time crowd level indicators', detail:'A live view of which venues and corridors are busiest right now, so you can time your movement around the week.', group:'app' },
     { name:'Low-sensory walking routes', detail:'Suggested paths between venues that avoid the loudest, most crowded stretches of Davos during WEF week.', group:'app' },
     { name:'Curated WEF-adjacent event listings', detail:'A filtered view of the broader WEF-week calendar, surfaced specifically for relevance to neurodistinct attendees.', group:'also' },
-    { name:'Small-group gathering options', detail:'Structured, lower-stimulation ways to connect with other attendees outside of large plenary sessions.', group:'also' },
+    { name:'Small-group gathering options', detail:'Structured, lower-stimulation ways to connect with other attendees, alongside the main conversation.', group:'also' },
     { name:'A replicable model other convenings can adopt', detail:'The app and its underlying approach are being built so other conferences and summits can adapt the same model.', group:'also' }
   ];
   ['app','also'].forEach(function(group){

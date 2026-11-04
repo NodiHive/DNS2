@@ -447,6 +447,8 @@
     .cta-sparkle, .hero-join-sparkle{ display:none !important; }
   }
 
+  @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
+  @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
 </style>
 </head>
 <body>
@@ -497,7 +499,13 @@
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="agenda.html">Agenda</a>
-        <a href="whats-new.html">What's New</a>
+        <div class="nav-drop" id="dropNew">
+          <button class="drop-toggle">What's New <span class="caret">▾</span></button>
+          <div class="drop-panel">
+            <a href="one-summit.html">The Summit, Reimagined</a>
+            <a href="whats-new.html">Prize &amp; Programs</a>
+          </div>
+        </div>
 
         <div class="nav-drop" id="dropHonors">
           <button class="drop-toggle">Honors <span class="caret">▾</span></button>
@@ -542,7 +550,13 @@
     <div class="cm-grid">
 
       <a class="cm-leaf" href="agenda.html"><span class="cm-dot"></span>Agenda</a>
-      <a class="cm-leaf" href="whats-new.html"><span class="cm-dot"></span>What's New</a>
+      <div class="cm-cluster">
+        <div class="cm-cluster-label"><span class="cm-dot-lg"></span>What's New</div>
+        <div class="cm-children">
+          <a href="one-summit.html">The Summit, Reimagined</a>
+          <a href="whats-new.html">Prize &amp; Programs</a>
+        </div>
+      </div>
 
       <div class="cm-cluster">
         <div class="cm-cluster-label"><span class="cm-dot-lg"></span>Honors</div>
@@ -629,12 +643,12 @@
   <section id="featured">
     <div class="section-head">
       <p class="kicker">Featured Programming</p>
-      <h2>Main-stage evening, Davos.</h2>
-      <p>Details for DNS 2027's flagship evening are being finalized. Here's the shape of the program based on prior years.</p>
+      <h2>The flagship evening, Davos.</h2>
+      <p>One live conversation, carried into every room. Details for DNS 2027's flagship evening are being finalized. <a href="one-summit.html">See how the evening works →</a></p>
     </div>
     <div class="event-card">
       <div>
-        <h3>Leadership Dinner &amp; Main Stage Panels</h3>
+        <h3>Leadership Dinner &amp; Panel Conversations</h3>
         <div class="event-meta">
           <div>Venue to be confirmed — Davos, Switzerland</div>
           <div>During WEF Annual Meeting week, January 2027</div>
@@ -644,8 +658,8 @@
       <div class="event-schedule">
         <span class="time">Doors Open</span>
         <span class="desc">Leadership Wall spotlight and networking, Innovation Exhibit open</span>
-        <span class="time">Dinner &amp; Panels</span>
-        <span class="desc">Main-stage discussions with neurodistinct leaders and allies</span>
+        <span class="time">Dinner &amp; Conversation</span>
+        <span class="desc">Live panel conversations with neurodistinct leaders and allies, carried into every room</span>
         <span class="time">Late Networking</span>
         <span class="desc">Continued conversation and connection</span>
       </div>

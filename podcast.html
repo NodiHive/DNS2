@@ -242,6 +242,8 @@
     .cta-sparkle{ display:none !important; }
   }
 
+  @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
+  @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
 </style>
 </head>
 <body>
@@ -292,7 +294,13 @@
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <div class="nav-links" id="navLinks">
         <a href="agenda.html">Agenda</a>
-        <a href="whats-new.html">What's New</a>
+        <div class="nav-drop" id="dropNew">
+          <button class="drop-toggle">What's New <span class="caret">▾</span></button>
+          <div class="drop-panel">
+            <a href="one-summit.html">The Summit, Reimagined</a>
+            <a href="whats-new.html">Prize &amp; Programs</a>
+          </div>
+        </div>
 
         <div class="nav-drop" id="dropHonors">
           <button class="drop-toggle">Honors <span class="caret">▾</span></button>
@@ -337,7 +345,13 @@
     <div class="cm-grid">
 
       <a class="cm-leaf" href="agenda.html"><span class="cm-dot"></span>Agenda</a>
-      <a class="cm-leaf" href="whats-new.html"><span class="cm-dot"></span>What's New</a>
+      <div class="cm-cluster">
+        <div class="cm-cluster-label"><span class="cm-dot-lg"></span>What's New</div>
+        <div class="cm-children">
+          <a href="one-summit.html">The Summit, Reimagined</a>
+          <a href="whats-new.html">Prize &amp; Programs</a>
+        </div>
+      </div>
 
       <div class="cm-cluster">
         <div class="cm-cluster-label"><span class="cm-dot-lg"></span>Honors</div>
