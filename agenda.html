@@ -371,6 +371,17 @@
 
   @media (min-width:761px) and (max-width:900px){ .nav-links{ gap:15px; } .nav-links a, .drop-toggle{ font-size:11px; } }
   @media (max-width:760px){ .nav-links{ align-items:stretch; } .nav-drop{ align-self:stretch; } .drop-panel a{ display:block; text-align:left; } }
+
+  /* SPEAKING INVITATION (quiet callout: sponsorship, agenda, home) */
+  .speak-note{ display:flex; align-items:center; justify-content:space-between; gap:18px 32px; flex-wrap:wrap;
+    padding:24px 28px; background:var(--bg-panel); border:1px solid var(--rule); border-left:2px solid var(--gold); border-radius:2px; }
+  .speak-note .sn-text{ flex:1 1 320px; min-width:0; }
+  .speak-note .sn-head{ font-family:'Fraunces', serif; font-weight:500; font-size:21px; color:var(--ink); margin:0 0 5px; line-height:1.3; }
+  .speak-note .sn-sub{ font-size:14.5px; color:var(--ink-muted); margin:0; }
+  .speak-note .sn-link{ flex:0 0 auto; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.03em; color:var(--gold-soft);
+    text-decoration:none; padding:11px 16px; border:1px solid rgba(231,206,151,0.45); border-radius:2px; transition:border-color .2s ease, color .2s ease; }
+  .speak-note .sn-link:hover, .speak-note .sn-link:focus-visible{ border-color:var(--gold-soft); color:var(--ink); }
+  @media (max-width:560px){ .speak-note{ padding:20px; } .speak-note .sn-link{ width:100%; text-align:center; font-size:11px; letter-spacing:0; padding:11px 8px; white-space:nowrap; } }
 </style>
 </head>
 <body>
@@ -785,6 +796,13 @@
 
       </div>
     </div>
+    <aside class="speak-note" aria-label="Speaking at DNS 2027" style="margin:48px 0 0;">
+      <div class="sn-text">
+        <p class="sn-head">Interested in speaking at DNS&nbsp;2027?</p>
+        <p class="sn-sub">Reach out and let us know.</p>
+      </div>
+      <a class="sn-link" href="mailto:contact@DavosNeurodiversitySummit.com?subject=Speaking%20at%20DNS%202027">contact@DavosNeurodiversitySummit.com</a>
+    </aside>
   </section>
 </main>
 
